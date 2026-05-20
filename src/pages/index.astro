@@ -3,25 +3,31 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/style.css';
 ---
 
-<BaseLayout title="Thomas Schimdst Müller - CV">
+<BaseLayout title="CYBER//DECK :: Nguyễn Ngọc Gia Khang">
+  <div class="scanlines"></div>
+
+  <!-- ═══ Navigation ═══ -->
   <header class="dash-header">
     <div class="dash-logo" onclick="openNav()">
       <div class="triangle" id="head-triangle"></div>
     </div>
     <nav class="dash-nav">
       <a href="/" class="active">Dashboard</a>
-      <a href="#services">Services</a>
-      <a href="#skills">Skills</a>
+      <a href="#about">About</a>
+      <a href="#skills">Stack</a>
       <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
       <a href="/clock">Clock</a>
     </nav>
     <div class="dash-controls">
       <div class="dash-search">
         <i class="fas fa-search"></i>
       </div>
-      <div class="dash-avatar">TM</div>
+      <div class="dash-avatar">NK</div>
     </div>
   </header>
+
+  <!-- ═══ Side Nav ═══ -->
   <section class="start">
     <nav id="mySidenav" class="sidenav">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
@@ -41,23 +47,63 @@ import '../styles/style.css';
       </div>
     </nav>
 
+    <!-- ═══ Hero ═══ -->
     <div class="main-container">
       <div class="herotxt">
-        <div class="slide">
-          <h1 class="gradient-text">Thomas Schimdst Müller</h1>
+        <div class="terminal-line"><span class="prompt">❯</span> <span class="cmd">init --profile developer</span></div>
+        <div class="terminal-line"><span class="prompt">❯</span> <span class="cmd">loading systems... <span style="color:var(--purple)">■</span><span style="color:var(--magenta)">■</span><span style="color:var(--cyan)">■</span> 100%</span></div>
+        <div class="terminal-line"><span class="prompt">❯</span> <span class="cmd">access granted. welcome, user.</span></div>
+
+        <h1 class="hero-title">
+          <span class="chroma" data-text="Nguyễn Ngọc Gia Khang">Nguyễn Ngọc Gia Khang</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          <span class="highlight" id="typewriter">Developer</span><span class="typing-cursor"></span>
+          <br />
+          <span style="font-size:0.75rem;color:var(--text-muted);font-family:var(--font-mono);">Tom Schmidt Müller · Ruan Yu Jia Kang</span>
+        </p>
+
+        <div class="terminal-hero">
+          <div class="term-line"><span class="prompt" style="color:var(--purple)">❯ whoami</span> <span class="cmd">Self-taught software developer from Vietnam</span></div>
+          <div class="term-line"><span class="prompt" style="color:var(--purple)">❯ current_focus</span> <span class="cmd">C/C++ · Systems Programming · Linux · Web Applications</span></div>
+          <div class="term-line"><span class="prompt" style="color:var(--purple)">❯ os</span> <span class="cmd">Arch Linux</span></div>
+          <div class="term-line"><span class="prompt" style="color:var(--purple)">❯ interests</span> <span class="cmd">Cybersecurity · Automation · Multilingual Computing · Developer Tooling</span></div>
+          <div class="term-line"><span class="prompt" style="color:var(--purple)">❯ philosophy</span> <span class="cmd">Build first. Optimize later.</span></div>
         </div>
-        <div class="scroll">
-          <h2>
-            <span></span> Developer
-            <a href="#body">
-              <button onclick="playAudio()" type="button">
-                <i><iconify-icon icon="bi:heart-fill" width="50" height="50" rotate="45deg"></iconify-icon></i>
-              </button>
-            </a>
-          </h2>
+
+        <div class="hero-cta">
+          <button class="btn-neon" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
+            <i class="fas fa-cube"></i>
+            <span>View Projects</span>
+          </button>
+          <button class="btn-neon-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+            <i class="fas fa-terminal"></i>
+            <span>Contact</span>
+          </button>
+        </div>
+
+        <div class="hero-panels">
+          <div class="hero-panel">
+            <span class="label">Status</span>
+            <span class="value green">● Online</span>
+          </div>
+          <div class="hero-panel">
+            <span class="label">OS</span>
+            <span class="value">Arch Linux</span>
+          </div>
+          <div class="hero-panel">
+            <span class="label">Projects</span>
+            <span class="value pink">2 Active</span>
+          </div>
+          <div class="hero-panel">
+            <span class="label">Stack</span>
+            <span class="value">C++, Python, TS</span>
+          </div>
         </div>
       </div>
-      <div class="outer-heropic-container">
+
+      <div class="outer-heropic-container holo-flicker">
         <div class="inner-heropic-container">
           <div class="reactor">
             <div class="triangle"></div>
@@ -67,7 +113,7 @@ import '../styles/style.css';
             <div class="circle-4"><span></span><span></span><span></span></div>
             <div class="circle-5"></div>
             <div class="circle-6"></div>
-            <div class="circle-7"><span></span><span></span><span></span></div>
+            <div class="circle-7"><span></span><span></span></div>
           </div>
         </div>
         <img src="/media-assets/robothand.png" />
@@ -75,211 +121,331 @@ import '../styles/style.css';
     </div>
   </section>
 
-  <section class="body" id="body">
-    <div class="service" id="services">
-      <div class="title">
-        <h2 class="gradient-text">Our Services</h2>
-      </div>
+  <!-- ═══ About ═══ -->
+  <section class="contact-section" id="about">
+    <div class="section-label">Profile</div>
+    <h2 class="section-title">About Me</h2>
 
-      <div class="wrapper">
-        <div class="box">
-          <div class="front-face">
-            <div class="icon">
-              <i class="fas fa-code"></i>
-            </div>
-            <span>Web Design</span>
-          </div>
-          <div class="back-face">
-            <span>Web Design</span>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem in deleniti vitae beatae veritatis aliquid porro perspiciatis dolores impedit ad.
-            </p>
-          </div>
+    <div class="contact-container" style="max-width:800px;">
+      <p style="font-family:var(--font-body);font-size:0.95rem;color:var(--text-secondary);line-height:1.7;margin-bottom:1.5rem;">
+        I am a self-taught developer with hands-on experience building web platforms,
+        local system applications, and Linux-based development environments.
+      </p>
+      <p style="font-family:var(--font-body);font-size:0.95rem;color:var(--text-secondary);line-height:1.7;margin-bottom:1.5rem;">
+        Most of my learning came from direct experimentation: custom Linux workflows,
+        scripting, debugging systems, building real projects, and studying computer
+        science independently.
+      </p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-top:1rem;">
+        <div class="hero-panel">
+          <span class="label">Currently Exploring</span>
         </div>
-        <div class="box">
-          <div class="front-face">
-            <div class="icon">
-              <i class="fas fa-chart-line"></i>
-            </div>
-            <span>Advertising</span>
-          </div>
-          <div class="back-face">
-            <span>Advertising</span>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem in deleniti vitae beatae veritatis aliquid porro perspiciatis dolores impedit ad.
-            </p>
-          </div>
-        </div>
-        <div class="box">
-          <div class="front-face">
-            <div class="icon">
-              <i class="fas fa-rocket"></i>
-            </div>
-            <span>Game Design</span>
-          </div>
-          <div class="back-face">
-            <span>Game Design</span>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem in deleniti vitae beatae veritatis aliquid porro perspiciatis dolores impedit ad.
-            </p>
-          </div>
+        <div class="hero-panel">
+          <span class="label">Learning</span>
         </div>
       </div>
 
-      <div class="skills" id="skills">
-        <div class="title">
-          <h2 class="gradient-text">Skills</h2>
-        </div>
-        <div class="skill-bars">
-          <div class="bar">
-            <div class="info">
-              <span>HTML</span>
-            </div>
-            <div class="progress-line html">
-              <span></span>
-            </div>
-          </div>
-          <div class="bar">
-            <div class="info">
-              <span>CSS</span>
-            </div>
-            <div class="progress-line css">
-              <span></span>
-            </div>
-          </div>
-          <div class="bar">
-            <div class="info">
-              <span>jQuery</span>
-            </div>
-            <div class="progress-line jquery">
-              <span></span>
-            </div>
-          </div>
-          <div class="bar">
-            <div class="info">
-              <span>Python</span>
-            </div>
-            <div class="progress-line python">
-              <span></span>
-            </div>
-          </div>
-          <div class="bar">
-            <div class="info">
-              <span>MySQL</span>
-            </div>
-            <div class="progress-line mysql">
-              <span></span>
-            </div>
-          </div>
-        </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-top:0.5rem;">
+        <ul style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-secondary);list-style:none;display:flex;flex-direction:column;gap:0.4rem;">
+          <li><span style="color:var(--magenta)">◈</span> Systems programming</li>
+          <li><span style="color:var(--magenta)">◈</span> Cybersecurity fundamentals</li>
+          <li><span style="color:var(--magenta)">◈</span> Low-level computing</li>
+          <li><span style="color:var(--magenta)">◈</span> Multilingual software envs</li>
+          <li><span style="color:var(--magenta)">◈</span> Scalable web systems</li>
+        </ul>
+        <ul style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-secondary);list-style:none;display:flex;flex-direction:column;gap:0.4rem;">
+          <li><span style="color:var(--cyan)">◈</span> Vietnamese (Native)</li>
+          <li><span style="color:var(--cyan)">◈</span> English (B1 Certified)</li>
+          <li><span style="color:var(--cyan)">◈</span> Mandarin Chinese (Learning)</li>
+        </ul>
       </div>
+    </div>
+  </section>
 
-      <div class="work-container" id="projects">
-        <div class="title">
-          <h2 class="gradient-text">Projects</h2>
+  <!-- ═══ Skills ═══ -->
+  <section class="skills" id="skills">
+    <div class="section-label">Expertise</div>
+    <h2 class="section-title">Tech Stack</h2>
+
+    <div class="skill-bars">
+      <div class="bar">
+        <div class="info">
+          <span>C++</span>
+          <span>85%</span>
         </div>
-        <div class="work">
-          <div class="work-item">
-            <div class="work-item-top">
-              <i class="fas fa-blog work-icon"></i>
-              <span class="work-year">2026</span>
-            </div>
-            <div class="work-item-content">
-              <h3>Blog Post FE</h3>
-              <p>Blog frontend built with Astro</p>
-              <a href="https://github.com/larvenejafemcoder/BlogPostFE" target="_blank" class="work-link"><i class="fab fa-github"></i> GitHub</a>
-            </div>
-          </div>
-          <div class="work-item">
-            <div class="work-item-top">
-              <i class="fas fa-code work-icon"></i>
-              <span class="work-year">2026</span>
-            </div>
-            <div class="work-item-content">
-              <h3>C Lang Std Libs</h3>
-              <p>Custom C standard library implementations</p>
-              <a href="https://github.com/larvenejafemcoder/CLang_Stdbased_Libs" target="_blank" class="work-link"><i class="fab fa-github"></i> GitHub</a>
-            </div>
-          </div>
-          <div class="work-item">
-            <div class="work-item-top">
-              <i class="fas fa-pen work-icon"></i>
-              <span class="work-year">2026</span>
-            </div>
-            <div class="work-item-content">
-              <h3>dd Writer Tkinter</h3>
-              <p>Disk writer utility (Python + Tkinter)</p>
-              <a href="https://github.com/larvenejafemcoder/ddwritertkinter" target="_blank" class="work-link"><i class="fab fa-github"></i> GitHub</a>
-            </div>
-          </div>
-          <div class="work-item">
-            <div class="work-item-top">
-              <i class="fas fa-cube work-icon"></i>
-              <span class="work-year">2026</span>
-            </div>
-            <div class="work-item-content">
-              <h3>Minecraft Beta .NET</h3>
-              <p>Minecraft Beta 1.7.3 ported to C#</p>
-              <a href="https://github.com/larvenejafemcoder/MinecraftBetaDotnetProj" target="_blank" class="work-link"><i class="fab fa-github"></i> GitHub</a>
-            </div>
-          </div>
-          <div class="work-item">
-            <div class="work-item-top">
-              <i class="fab fa-linux work-icon"></i>
-              <span class="work-year">2026</span>
-            </div>
-            <div class="work-item-content">
-              <h3>Mukus</h3>
-              <p>Rufus clone for Linux (Python)</p>
-              <a href="https://github.com/larvenejafemcoder/Mukus" target="_blank" class="work-link"><i class="fab fa-github"></i> GitHub</a>
-            </div>
-          </div>
-          <div class="work-item">
-            <div class="work-item-top">
-              <i class="fas fa-microchip work-icon"></i>
-              <span class="work-year">2026</span>
-            </div>
-            <div class="work-item-content">
-              <h3>Reverse Engineering</h3>
-              <p>Disassembly &amp; keygen for CrackMe challenges</p>
-              <a href="https://github.com/larvenejafemcoder/Reverse_Engineering" target="_blank" class="work-link"><i class="fab fa-github"></i> GitHub</a>
-            </div>
-          </div>
-          <div class="work-item">
-            <div class="work-item-top">
-              <i class="fab fa-rust work-icon"></i>
-              <span class="work-year">2026</span>
-            </div>
-            <div class="work-item-content">
-              <h3>Rust Lang</h3>
-              <p>Rust learning repository</p>
-              <a href="https://github.com/larvenejafemcoder/Rust-Lang" target="_blank" class="work-link"><i class="fab fa-github"></i> GitHub</a>
-            </div>
-          </div>
-          <div class="work-item">
-            <div class="work-item-top">
-              <i class="fab fa-java work-icon"></i>
-              <span class="work-year">2026</span>
-            </div>
-            <div class="work-item-content">
-              <h3>Sorting Algorithms Java</h3>
-              <p>Sorting algorithms in Java</p>
-              <a href="https://github.com/larvenejafemcoder/SortingAlgo_Java" target="_blank" class="work-link"><i class="fab fa-github"></i> GitHub</a>
-            </div>
-          </div>
+        <div class="progress-line html"><span></span></div>
+      </div>
+      <div class="bar">
+        <div class="info">
+          <span>Python</span>
+          <span>75%</span>
+        </div>
+        <div class="progress-line python"><span></span></div>
+      </div>
+      <div class="bar">
+        <div class="info">
+          <span>C#</span>
+          <span>70%</span>
+        </div>
+        <div class="progress-line css"><span></span></div>
+      </div>
+      <div class="bar">
+        <div class="info">
+          <span>Java</span>
+          <span>70%</span>
+        </div>
+        <div class="progress-line mysql"><span></span></div>
+      </div>
+      <div class="bar">
+        <div class="info">
+          <span>JavaScript / TypeScript</span>
+          <span>80%</span>
+        </div>
+        <div class="progress-line jquery"><span></span></div>
+      </div>
+    </div>
+
+    <div style="max-width:700px;margin:2rem auto 0;display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;">
+      <span class="badge"><i class="fab fa-cuttlefish"></i> C++</span>
+      <span class="badge"><i class="fab fa-python"></i> Python</span>
+      <span class="badge"><i class="fas fa-code"></i> C#</span>
+      <span class="badge"><i class="fab fa-java"></i> Java</span>
+      <span class="badge"><i class="fab fa-js"></i> TypeScript</span>
+      <span class="badge"><i class="fab fa-js"></i> JavaScript</span>
+      <span class="badge"><i class="fab fa-linux"></i> Linux</span>
+      <span class="badge"><i class="fab fa-git-alt"></i> Git</span>
+      <span class="badge"><i class="fas fa-terminal"></i> Zsh</span>
+      <span class="badge"><i class="fas fa-code"></i> VS Code</span>
+    </div>
+  </section>
+
+  <!-- ═══ Environment ═══ -->
+  <section class="contact-section" style="padding-top:0;">
+    <div class="section-label">Environment</div>
+    <h2 class="section-title">Dev Setup</h2>
+
+    <div class="contact-container" style="max-width:600px;">
+      <div style="font-family:var(--font-mono);font-size:0.8rem;display:flex;flex-direction:column;gap:0.6rem;">
+        <div style="display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid var(--glass-border);">
+          <span style="color:var(--text-muted);">OS</span>
+          <span style="color:var(--cyan);">Arch Linux</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid var(--glass-border);">
+          <span style="color:var(--text-muted);">Shell</span>
+          <span style="color:var(--cyan);">Zsh</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid var(--glass-border);">
+          <span style="color:var(--text-muted);">Editor</span>
+          <span style="color:var(--cyan);">VS Code + Neovim</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid var(--glass-border);">
+          <span style="color:var(--text-muted);">Languages</span>
+          <span style="color:var(--cyan);">C++, Python, TypeScript</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:0.5rem 0;">
+          <span style="color:var(--text-muted);">Learning</span>
+          <span style="color:var(--cyan);">Mandarin Chinese</span>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ═══ Projects ═══ -->
+  <section class="work-container" id="projects">
+    <div class="section-label">Portfolio</div>
+    <h2 class="section-title">Projects</h2>
+
+    <div class="work">
+      <div class="work-item">
+        <div class="work-item-top">
+          <i class="fas fa-coffee work-icon"></i>
+          <span class="work-year">2025</span>
+        </div>
+        <div class="work-item-content">
+          <h3>VietCoffee</h3>
+          <p style="margin-bottom:6px;color:var(--text-muted);font-family:var(--font-mono);font-size:0.7rem;">Café Operations Platform</p>
+          <p>A local-first café management system designed to support real-world business workflows and online interaction.</p>
+          <div style="margin:0.75rem 0;">
+            <span class="minibadge">product management</span>
+            <span class="minibadge">order handling</span>
+            <span class="minibadge">sales workflow</span>
+            <span class="minibadge">offline/local</span>
+          </div>
+          <p style="font-family:var(--font-mono);font-size:0.7rem;color:var(--text-muted);margin-bottom:0.75rem;">JavaScript · HTML/CSS · System Design</p>
+          <a href="https://github.com/larvenejafemcoder" target="_blank" class="work-link"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+      </div>
+      <div class="work-item">
+        <div class="work-item-top">
+          <i class="fas fa-graduation-cap work-icon"></i>
+          <span class="work-year">2025</span>
+        </div>
+        <div class="work-item-content">
+          <h3>ScholarNet VN</h3>
+          <p style="margin-bottom:6px;color:var(--text-muted);font-family:var(--font-mono);font-size:0.7rem;">Vocabulary & University Information Platform</p>
+          <p>Educational web platform focused on vocabulary learning, university admissions, and scholarship discovery.</p>
+          <div style="margin:0.75rem 0;">
+            <span class="minibadge">learning workflows</span>
+            <span class="minibadge">university info</span>
+            <span class="minibadge">progress tracking</span>
+            <span class="minibadge">scholarship discovery</span>
+          </div>
+          <p style="font-family:var(--font-mono);font-size:0.7rem;color:var(--text-muted);margin-bottom:0.75rem;">JavaScript · Web Development · Frontend Systems</p>
+          <a href="https://github.com/larvenejafemcoder" target="_blank" class="work-link"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Objectives ═══ -->
+  <section class="contact-section" style="padding-top:0;">
+    <div class="section-label">Roadmap</div>
+    <h2 class="section-title">Current Objectives</h2>
+
+    <div class="contact-container" style="max-width:700px;">
+      <ul style="font-family:var(--font-mono);font-size:0.8rem;color:var(--text-secondary);list-style:none;display:flex;flex-direction:column;gap:0.7rem;">
+        <li><span style="color:var(--purple)">⟡</span> Deepening C/C++ and systems programming knowledge</li>
+        <li><span style="color:var(--purple)">⟡</span> Building scalable web applications</li>
+        <li><span style="color:var(--purple)">⟡</span> Expanding Linux development environments</li>
+        <li><span style="color:var(--purple)">⟡</span> Studying cybersecurity and low-level systems</li>
+        <li><span style="color:var(--purple)">⟡</span> Developing multilingual software workflows</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══ GitHub Stats ═══ -->
+  <section class="contact-section" style="padding-top:0;">
+    <div class="section-label">Statistics</div>
+    <h2 class="section-title">GitHub</h2>
+
+    <div class="contact-container" style="max-width:600px;text-align:center;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
+        <img src="https://github-readme-stats.vercel.app/api?username=larvenejafemcoder&show_icons=true&theme=midnight-purple&bg_color=05010A&border_color=9D4EDD&text_color=E0D0FF&title_color=9D4EDD&icon_color=FF00AA" style="max-width:100%;border-radius:8px;border:1px solid var(--glass-border);" />
+        <img src="https://github-readme-streak-stats.herokuapp.com/?user=larvenejafemcoder&theme=midnight-purple&background=05010A&border=9D4EDD&stroke=9D4EDD&ring=FF00AA&fire=FF00AA&currStreakNum=E0D0FF&sideNums=9D4EDD&currStreakLabel=9D4EDD&sideLabels=9D4EDD&dates=E0D0FF" style="max-width:100%;border-radius:8px;border:1px solid var(--glass-border);" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Education ═══ -->
+  <section class="work-container" id="education">
+    <div class="section-label">Academics</div>
+    <h2 class="section-title">Education</h2>
+
+    <div class="contact-container" style="max-width:900px;">
+      <div style="margin-bottom:2rem;">
+        <div class="section-label" style="margin-bottom:0.5rem;">Qualifications</div>
+        <ul style="font-family:var(--font-mono);font-size:0.85rem;color:var(--text-secondary);list-style:none;display:flex;flex-direction:column;gap:0.5rem;">
+          <li><span style="color:var(--purple)">◈</span> GED (General Educational Development) — In Progress (2025-2026)</li>
+          <li><span style="color:var(--purple)">◈</span> GCSE Completed</li>
+          <li><span style="color:var(--purple)">◈</span> VNGSCE (Ended 2021)</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom:2rem;">
+        <div class="section-label" style="margin-bottom:0.5rem;">VNGSCE Scores (Ended 2021)</div>
+        <div style="overflow-x:auto;">
+          <table style="width:100%;border-collapse:collapse;font-family:var(--font-mono);font-size:0.75rem;">
+            <thead>
+              <tr style="border-bottom:1px solid var(--glass-border);">
+                <th style="padding:0.5rem;text-align:left;color:var(--purple);">Subject</th>
+                <th style="padding:0.5rem;text-align:center;color:var(--text-muted);">TX</th>
+                <th style="padding:0.5rem;text-align:center;color:var(--text-muted);">GK</th>
+                <th style="padding:0.5rem;text-align:center;color:var(--text-muted);">CK</th>
+                <th style="padding:0.5rem;text-align:center;color:var(--text-muted);">HK1</th>
+                <th style="padding:0.5rem;text-align:center;color:var(--text-muted);">HK2</th>
+                <th style="padding:0.5rem;text-align:center;color:var(--cyan);">Final</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid rgba(180,120,255,0.06);"><td style="padding:0.4rem 0.5rem;color:var(--text-primary);">Toán</td><td style="padding:0.4rem 0.5rem;text-align:center;">9,10,10,9</td><td style="padding:0.4rem 0.5rem;text-align:center;">10</td><td style="padding:0.4rem 0.5rem;text-align:center;">9.8</td><td style="padding:0.4rem 0.5rem;text-align:center;">9.6</td><td style="padding:0.4rem 0.5rem;text-align:center;">9.7</td><td style="padding:0.4rem 0.5rem;text-align:center;color:var(--cyan);font-weight:600;">9.7</td></tr>
+              <tr style="border-bottom:1px solid rgba(180,120,255,0.06);"><td style="padding:0.4rem 0.5rem;color:var(--text-primary);">Vật lí</td><td style="padding:0.4rem 0.5rem;text-align:center;">10,8,9</td><td style="padding:0.4rem 0.5rem;text-align:center;">9.5</td><td style="padding:0.4rem 0.5rem;text-align:center;">9.3</td><td style="padding:0.4rem 0.5rem;text-align:center;">7.9</td><td style="padding:0.4rem 0.5rem;text-align:center;">9.2</td><td style="padding:0.4rem 0.5rem;text-align:center;color:var(--cyan);font-weight:600;">8.8</td></tr>
+              <tr style="border-bottom:1px solid rgba(180,120,255,0.06);"><td style="padding:0.4rem 0.5rem;color:var(--text-primary);">Hoá học</td><td style="padding:0.4rem 0.5rem;text-align:center;">8,10,10</td><td style="padding:0.4rem 0.5rem;text-align:center;">9.3</td><td style="padding:0.4rem 0.5rem;text-align:center;">9.8</td><td style="padding:0.4rem 0.5rem;text-align:center;">9.4</td><td style="padding:0.4rem 0.5rem;text-align:center;">9.5</td><td style="padding:0.4rem 0.5rem;text-align:center;color:var(--cyan);font-weight:600;">9.5</td></tr>
+              <tr style="border-bottom:1px solid rgba(180,120,255,0.06);"><td style="padding:0.4rem 0.5rem;color:var(--text-primary);">Sinh học</td><td style="padding:0.4rem 0.5rem;text-align:center;">9,8,10</td><td style="padding:0.4rem 0.5rem;text-align:center;">9.3</td><td style="padding:0.4rem 0.5rem;text-align:center;">9.5</td><td style="padding:0.4rem 0.5rem;text-align:center;">8.4</td><td style="padding:0.4rem 0.5rem;text-align:center;">9.3</td><td style="padding:0.4rem 0.5rem;text-align:center;color:var(--cyan);font-weight:600;">9.5</td></tr>
+              <tr style="border-bottom:1px solid rgba(180,120,255,0.06);"><td style="padding:0.4rem 0.5rem;color:var(--text-primary);">Ngữ văn</td><td style="padding:0.4rem 0.5rem;text-align:center;">8,8,9,9</td><td style="padding:0.4rem 0.5rem;text-align:center;">7</td><td style="padding:0.4rem 0.5rem;text-align:center;">8.5</td><td style="padding:0.4rem 0.5rem;text-align:center;">7.9</td><td style="padding:0.4rem 0.5rem;text-align:center;">8.2</td><td style="padding:0.4rem 0.5rem;text-align:center;color:var(--cyan);font-weight:600;">8.1</td></tr>
+              <tr style="border-bottom:1px solid rgba(180,120,255,0.06);"><td style="padding:0.4rem 0.5rem;color:var(--text-primary);">Lịch sử</td><td style="padding:0.4rem 0.5rem;text-align:center;">9,9,10</td><td style="padding:0.4rem 0.5rem;text-align:center;">9.8</td><td style="padding:0.4rem 0.5rem;text-align:center;">10</td><td style="padding:0.4rem 0.5rem;text-align:center;">9.7</td><td style="padding:0.4rem 0.5rem;text-align:center;">9.7</td><td style="padding:0.4rem 0.5rem;text-align:center;color:var(--cyan);font-weight:600;">9.7</td></tr>
+              <tr style="border-bottom:1px solid rgba(180,120,255,0.06);"><td style="padding:0.4rem 0.5rem;color:var(--text-primary);">Địa Lí</td><td style="padding:0.4rem 0.5rem;text-align:center;">9,10,9</td><td style="padding:0.4rem 0.5rem;text-align:center;">8</td><td style="padding:0.4rem 0.5rem;text-align:center;">9.5</td><td style="padding:0.4rem 0.5rem;text-align:center;">9.6</td><td style="padding:0.4rem 0.5rem;text-align:center;">9.1</td><td style="padding:0.4rem 0.5rem;text-align:center;color:var(--cyan);font-weight:600;">9.3</td></tr>
+              <tr style="border-bottom:1px solid rgba(180,120,255,0.06);"><td style="padding:0.4rem 0.5rem;color:var(--text-primary);">Ngoại ngữ</td><td style="padding:0.4rem 0.5rem;text-align:center;">10,9,9</td><td style="padding:0.4rem 0.5rem;text-align:center;">9.5</td><td style="padding:0.4rem 0.5rem;text-align:center;">8.8</td><td style="padding:0.4rem 0.5rem;text-align:center;">9.9</td><td style="padding:0.4rem 0.5rem;text-align:center;">9.2</td><td style="padding:0.4rem 0.5rem;text-align:center;color:var(--cyan);font-weight:600;">9.4</td></tr>
+              <tr style="border-bottom:1px solid rgba(180,120,255,0.06);"><td style="padding:0.4rem 0.5rem;color:var(--text-primary);">GDCD</td><td style="padding:0.4rem 0.5rem;text-align:center;">7,9</td><td style="padding:0.4rem 0.5rem;text-align:center;">8.5</td><td style="padding:0.4rem 0.5rem;text-align:center;">10</td><td style="padding:0.4rem 0.5rem;text-align:center;">9.7</td><td style="padding:0.4rem 0.5rem;text-align:center;">9.0</td><td style="padding:0.4rem 0.5rem;text-align:center;color:var(--cyan);font-weight:600;">9.2</td></tr>
+              <tr style="border-bottom:1px solid rgba(180,120,255,0.06);"><td style="padding:0.4rem 0.5rem;color:var(--text-primary);">Công nghệ</td><td style="padding:0.4rem 0.5rem;text-align:center;">10,9</td><td style="padding:0.4rem 0.5rem;text-align:center;">10</td><td style="padding:0.4rem 0.5rem;text-align:center;">10</td><td style="padding:0.4rem 0.5rem;text-align:center;">9.6</td><td style="padding:0.4rem 0.5rem;text-align:center;">9.9</td><td style="padding:0.4rem 0.5rem;text-align:center;color:var(--cyan);font-weight:600;">9.8</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-label" style="margin-bottom:0.5rem;">GED Scores (2025-2026 Ongoing)</div>
+        <div style="overflow-x:auto;">
+          <table style="width:100%;border-collapse:collapse;font-family:var(--font-mono);font-size:0.75rem;">
+            <thead>
+              <tr style="border-bottom:1px solid var(--glass-border);">
+                <th style="padding:0.5rem;text-align:left;color:var(--purple);">Subject</th>
+                <th style="padding:0.5rem;text-align:center;color:var(--text-muted);">TX1</th>
+                <th style="padding:0.5rem;text-align:center;color:var(--text-muted);">TX2</th>
+                <th style="padding:0.5rem;text-align:center;color:var(--text-muted);">GK1</th>
+                <th style="padding:0.5rem;text-align:center;color:var(--text-muted);">TX3</th>
+                <th style="padding:0.5rem;text-align:center;color:var(--text-muted);">TX4</th>
+                <th style="padding:0.5rem;text-align:center;color:var(--text-muted);">CK1</th>
+                <th style="padding:0.5rem;text-align:center;color:var(--cyan);">TBM</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid rgba(180,120,255,0.06);"><td style="padding:0.4rem 0.5rem;color:var(--text-primary);">Địa</td><td style="padding:0.4rem 0.5rem;text-align:center;">8</td><td style="padding:0.4rem 0.5rem;text-align:center;">8</td><td style="padding:0.4rem 0.5rem;text-align:center;">8.8</td><td style="padding:0.4rem 0.5rem;text-align:center;">10</td><td style="padding:0.4rem 0.5rem;text-align:center;">-</td><td style="padding:0.4rem 0.5rem;text-align:center;">9</td><td style="padding:0.4rem 0.5rem;text-align:center;color:var(--cyan);font-weight:600;">8.8</td></tr>
+              <tr style="border-bottom:1px solid rgba(180,120,255,0.06);"><td style="padding:0.4rem 0.5rem;color:var(--text-primary);">Sử</td><td style="padding:0.4rem 0.5rem;text-align:center;">6</td><td style="padding:0.4rem 0.5rem;text-align:center;">7.5</td><td style="padding:0.4rem 0.5rem;text-align:center;">7.8</td><td style="padding:0.4rem 0.5rem;text-align:center;">10</td><td style="padding:0.4rem 0.5rem;text-align:center;">10</td><td style="padding:0.4rem 0.5rem;text-align:center;">8</td><td style="padding:0.4rem 0.5rem;text-align:center;color:var(--cyan);font-weight:600;">8</td></tr>
+              <tr style="border-bottom:1px solid rgba(180,120,255,0.06);"><td style="padding:0.4rem 0.5rem;color:var(--text-primary);">Toán</td><td style="padding:0.4rem 0.5rem;text-align:center;">10</td><td style="padding:0.4rem 0.5rem;text-align:center;">9</td><td style="padding:0.4rem 0.5rem;text-align:center;">7</td><td style="padding:0.4rem 0.5rem;text-align:center;">8</td><td style="padding:0.4rem 0.5rem;text-align:center;">8</td><td style="padding:0.4rem 0.5rem;text-align:center;">8</td><td style="padding:0.4rem 0.5rem;text-align:center;color:var(--cyan);font-weight:600;">8.1</td></tr>
+              <tr style="border-bottom:1px solid rgba(180,120,255,0.06);"><td style="padding:0.4rem 0.5rem;color:var(--text-primary);">Văn</td><td style="padding:0.4rem 0.5rem;text-align:center;">8</td><td style="padding:0.4rem 0.5rem;text-align:center;">8.5</td><td style="padding:0.4rem 0.5rem;text-align:center;">8.5</td><td style="padding:0.4rem 0.5rem;text-align:center;">7</td><td style="padding:0.4rem 0.5rem;text-align:center;">8</td><td style="padding:0.4rem 0.5rem;text-align:center;">6.3</td><td style="padding:0.4rem 0.5rem;text-align:center;color:var(--cyan);font-weight:600;">7.5</td></tr>
+              <tr style="border-bottom:1px solid rgba(180,120,255,0.06);"><td style="padding:0.4rem 0.5rem;color:var(--text-primary);">Công Nghệ</td><td style="padding:0.4rem 0.5rem;text-align:center;">9.5</td><td style="padding:0.4rem 0.5rem;text-align:center;">8</td><td style="padding:0.4rem 0.5rem;text-align:center;">9.8</td><td style="padding:0.4rem 0.5rem;text-align:center;">-</td><td style="padding:0.4rem 0.5rem;text-align:center;">-</td><td style="padding:0.4rem 0.5rem;text-align:center;">8.75</td><td style="padding:0.4rem 0.5rem;text-align:center;color:var(--cyan);font-weight:600;">9</td></tr>
+              <tr style="border-bottom:1px solid rgba(180,120,255,0.06);"><td style="padding:0.4rem 0.5rem;color:var(--text-primary);">Tin</td><td style="padding:0.4rem 0.5rem;text-align:center;">9</td><td style="padding:0.4rem 0.5rem;text-align:center;">8.5</td><td style="padding:0.4rem 0.5rem;text-align:center;">8.3</td><td style="padding:0.4rem 0.5rem;text-align:center;">10</td><td style="padding:0.4rem 0.5rem;text-align:center;">-</td><td style="padding:0.4rem 0.5rem;text-align:center;">9.5</td><td style="padding:0.4rem 0.5rem;text-align:center;color:var(--cyan);font-weight:600;">9.1</td></tr>
+              <tr style="border-bottom:1px solid rgba(180,120,255,0.06);"><td style="padding:0.4rem 0.5rem;color:var(--text-primary);">GDKTPL</td><td style="padding:0.4rem 0.5rem;text-align:center;">8.5</td><td style="padding:0.4rem 0.5rem;text-align:center;">9</td><td style="padding:0.4rem 0.5rem;text-align:center;">8.75</td><td style="padding:0.4rem 0.5rem;text-align:center;">7.5</td><td style="padding:0.4rem 0.5rem;text-align:center;">9</td><td style="padding:0.4rem 0.5rem;text-align:center;">7</td><td style="padding:0.4rem 0.5rem;text-align:center;color:var(--cyan);font-weight:600;">8</td></tr>
+              <tr style="border-bottom:1px solid rgba(180,120,255,0.06);"><td style="padding:0.4rem 0.5rem;color:var(--text-primary);">GDQP</td><td style="padding:0.4rem 0.5rem;text-align:center;">10</td><td style="padding:0.4rem 0.5rem;text-align:center;">10</td><td style="padding:0.4rem 0.5rem;text-align:center;">10</td><td style="padding:0.4rem 0.5rem;text-align:center;">10</td><td style="padding:0.4rem 0.5rem;text-align:center;">9</td><td style="padding:0.4rem 0.5rem;text-align:center;">7</td><td style="padding:0.4rem 0.5rem;text-align:center;color:var(--cyan);font-weight:600;">8</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-family:var(--font-mono);font-size:0.65rem;color:var(--text-muted);margin-top:0.5rem;">HĐTN: Đ (Passed all terms)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Contact ═══ -->
+  <section class="contact-section" id="contact">
+    <div class="section-label">Transmission</div>
+    <h2 class="section-title">Contact</h2>
+
+    <div class="contact-container">
+      <div style="display:flex;flex-direction:column;gap:1.5rem;font-family:var(--font-mono);font-size:0.85rem;">
+        <a href="mailto:tomkancaston@gmail.com" style="display:flex;align-items:center;gap:1rem;padding:1rem;background:rgba(180,120,255,0.05);border-radius:8px;border:1px solid var(--glass-border);transition:all 0.3s;text-decoration:none;">
+          <i class="fas fa-envelope" style="color:var(--purple);font-size:1.2rem;"></i>
+          <span style="color:var(--text-primary);">tomkancaston@gmail.com</span>
+        </a>
+        <a href="https://github.com/larvenejafemcoder" target="_blank" style="display:flex;align-items:center;gap:1rem;padding:1rem;background:rgba(180,120,255,0.05);border-radius:8px;border:1px solid var(--glass-border);transition:all 0.3s;text-decoration:none;">
+          <i class="fab fa-github" style="color:var(--purple);font-size:1.2rem;"></i>
+          <span style="color:var(--cyan);">github.com/larvenejafemcoder</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Philosophy ═══ -->
+  <section class="contact-section" style="padding-top:0;padding-bottom:60px;">
+    <div class="contact-container" style="max-width:600px;text-align:center;border-style:dashed;">
+      <p style="font-family:var(--font-mono);font-size:0.85rem;color:var(--text-muted);font-style:italic;">
+        Low-level curiosity with high-level execution.
+      </p>
+      <p style="font-family:var(--font-mono);font-size:0.8rem;color:var(--purple);margin-top:0.5rem;">
+        Still learning. Still building.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══ Footer ═══ -->
   <footer>
-    <h1>Feel free to contact me!</h1>
+    <h1>Let's build something together.</h1>
     <div class="social">
       <div class="social-icon">
         <a href="#"><img src="/media-assets/main/discord.png" /></a>
       </div>
       <div class="social-icon">
-        <a href="#"><img src="/media-assets/main/github.png" /></a>
+        <a href="https://github.com/larvenejafemcoder" target="_blank"><img src="/media-assets/main/github.png" /></a>
       </div>
       <div class="social-icon">
         <a href="#"><img src="/media-assets/main/linkedin.png" /></a>
@@ -292,7 +458,7 @@ import '../styles/style.css';
       </div>
     </div>
     <p>
-      @Copyright 2022 by <span class="gradient-text">CyZer0</span>
+      © 2025 <span class="gradient-text">Nguyễn Ngọc Gia Khang</span>
       <img src="/media-assets/CyZerO.webp" />
     </p>
   </footer>
@@ -306,13 +472,7 @@ import '../styles/style.css';
   <script src="/myscript.js" is:inline></script>
   <script>
     var x = document.getElementById("myAudio");
-
-    function playAudio() {
-      x.play();
-    }
-
-    function pauseAudio() {
-      x.pause();
-    }
+    function playAudio() { x.play(); }
+    function pauseAudio() { x.pause(); }
   </script>
 </BaseLayout>

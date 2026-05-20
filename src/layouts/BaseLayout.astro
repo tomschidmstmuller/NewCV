@@ -4,7 +4,7 @@ export interface Props {
   description?: string;
 }
 
-const { title, description = "A online portfolio for a budding Blockchain Developer" } = Astro.props;
+const { title, description = "CYBER//DECK :: Nguyễn Ngọc Gia Khang — Portfolio" } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -15,12 +15,11 @@ const { title, description = "A online portfolio for a budding Blockchain Develo
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="keywords" content="#" />
-    <meta name="author" content="Ms.Caston" />
+    <meta name="keywords" content="blockchain, developer, cyber, portfolio" />
+    <meta name="author" content="Thomas Schimdst Müller" />
     <link rel="icon" type="image/x-icon" href="/media-assets/andzilogoW.png" />
-    <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js" is:inline></script>
 
-    <!-- Fonts -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js" is:inline></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
@@ -32,11 +31,13 @@ const { title, description = "A online portfolio for a budding Blockchain Develo
       referrerpolicy="no-referrer"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Sora:wght@100;200;300;400;500;600;700;800&family=VT323&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Sora:wght@100;200;300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
+    <div id="particle-canvas"></div>
+    <div id="cursor-glow"></div>
     <slot />
   </body>
 </html>
