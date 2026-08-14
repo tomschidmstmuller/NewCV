@@ -192,7 +192,7 @@ function closeNav() {
 (function initTerminalType() {
   var el = document.getElementById("typewriter");
   if (!el) return;
-  var words = ["Developer", "Blockchain Engineer", "Creative Coder", "Systems Architect"];
+  var words = ["Software Engineer", "Systems Enthusiast", "Self-taught Learner", "Open Source Explorer"];
   var wordIndex = 0;
   var charIndex = 0;
   var isDeleting = false;
