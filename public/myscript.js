@@ -133,7 +133,7 @@ function closeNav() {
 
 // ─── Magnetic Buttons ───
 (function initMagneticButtons() {
-  var buttons = document.querySelectorAll(".btn-neon, .btn-neon-outline, .btn-transmit");
+  var buttons = document.querySelectorAll(".btn-neon, .btn-neon-outline");
   buttons.forEach(function (btn) {
     btn.addEventListener("mousemove", function (e) {
       var rect = btn.getBoundingClientRect();
@@ -162,29 +162,6 @@ function closeNav() {
     card.addEventListener("mouseleave", function () {
       card.style.transform = "perspective(800px) rotateY(0deg) rotateX(0deg) translateY(0) scale(1)";
     });
-  });
-})();
-
-// ─── Contact Form ───
-(function initContactForm() {
-  var form = document.getElementById("contact-form");
-  if (!form) return;
-  var btn = form.querySelector(".btn-transmit");
-  var success = document.getElementById("transmit-success");
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    if (btn.classList.contains("sending")) return;
-
-    btn.classList.add("sending");
-    btn.disabled = true;
-
-    setTimeout(function () {
-      btn.classList.remove("sending");
-      btn.disabled = false;
-      form.style.display = "none";
-      if (success) success.classList.add("active");
-    }, 2500);
   });
 })();
 
