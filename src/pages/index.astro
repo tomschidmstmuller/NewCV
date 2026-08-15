@@ -1,110 +1,97 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/style.css';
+
+const profile = {
+  name: 'Nguyễn Ngọc Gia Khang',
+  role: 'Software Engineering Student',
+  email: 'tomkancaston@gmail.com',
+  github: 'https://github.com/larvenejafemcoder',
+  githubHandle: 'github.com/larvenejafemcoder',
+  location: 'Ho Chi Minh City, Vietnam',
+};
+
+const nav = [
+  { id: 'about', label: '~/about' },
+  { id: 'stack', label: '~/stack' },
+  { id: 'projects', label: '~/projects' },
+  { id: 'education', label: '~/education' },
+  { id: 'contact', label: '~/contact' },
+];
+
+const stackPrimary = [
+  { name: 'C++', level: 'Comfortable', width: 80 },
+  { name: 'C#', level: 'Comfortable', width: 80 },
+  { name: 'Python', level: 'Comfortable', width: 78 },
+  { name: 'JavaScript', level: 'Comfortable', width: 80 },
+  { name: 'TypeScript', level: 'Building / Intermediate', width: 60 },
+];
+
+const stackBadges = [
+  'C++', 'C#', 'Python', 'JavaScript', 'TypeScript',
+  'Git & GitHub', 'Node.js / npm', 'JSON', 'Vite', 'Astro', 'Tailwind CSS',
+  '.NET / Visual Studio', 'Linux', 'Windows', 'Neovim', 'Computer Architecture',
+];
+
+const projects = [
+  {
+    name: 'VietCoffee',
+    year: '2025',
+    tag: 'Café Operations Platform',
+    description: 'A local-first café management system designed to support real-world business workflows and online interaction.',
+    tags: ['product management', 'order handling', 'sales workflow', 'offline/local'],
+    tech: 'JavaScript · HTML/CSS · System Design',
+    github: 'https://github.com/larvenejafemcoder',
+  },
+  {
+    name: 'ScholarNet VN',
+    year: '2025',
+    tag: 'Vocabulary & University Information Platform',
+    description: 'Educational web platform focused on vocabulary learning, university admissions, and scholarship discovery.',
+    tags: ['learning workflows', 'university info', 'progress tracking', 'scholarship discovery'],
+    tech: 'JavaScript · Web Development · Frontend Systems',
+    github: 'https://github.com/larvenejafemcoder',
+  },
+];
+
+const strengths = [
+  { icon: 'fa-graduation-cap', title: 'Self-directed learning', text: 'Able to learn unfamiliar technologies independently through documentation, experimentation, and project-based practice rather than relying entirely on formal coursework.' },
+  { icon: 'fa-layer-group', title: 'Broad programming foundation', text: 'Have worked with several programming languages and paradigms, allowing me to adapt relatively quickly when moving between different technical environments.' },
+  { icon: 'fa-bug', title: 'Problem solving', text: 'Enjoy debugging and investigating technical problems, especially when the solution requires understanding what is happening underneath the abstraction.' },
+  { icon: 'fa-brain', title: 'Technical curiosity', text: 'Strong interest in understanding how software and computer systems work, including development tools, operating systems, performance, and lower-level concepts.' },
+  { icon: 'fa-hammer', title: 'Hands-on mindset', text: 'Prefer learning by building. Personal projects and experimentation have been an important part of developing my programming skills.' },
+  { icon: 'fa-exchange-alt', title: 'Adaptability', text: 'Comfortable moving between different tools, languages, operating systems, and development environments while learning what is necessary for the task.' },
+];
+
+const certifications = [
+  { icon: 'fa-language', name: 'IELTS', value: 'Academic: 6.5', note: 'Working proficiency in English for academic and technical environments.' },
+  { icon: 'fa-university', name: 'ĐGNL', value: '710 points', note: 'Vietnam National University competency assessment.' },
+  { icon: 'fa-book', name: 'Cambridge', value: 'English B1 · 155', note: 'Cambridge English qualification at B1 level.' },
+  { icon: 'fa-trophy', name: 'Academics', value: 'High-School Performance', note: 'Strengths in Informatics, Mathematics, and Technology.' },
+];
 ---
 
-<BaseLayout title="CYBER//DECK :: Nguyễn Ngọc Gia Khang">
+<BaseLayout title="Nguyễn Ngọc Gia Khang — Software Engineering Student">
   <div class="scanlines"></div>
 
-  <!-- ═══ Navigation ═══ -->
-  <header class="dash-header">
-    <div class="dash-logo" onclick="openNav()">
-      <div class="triangle" id="head-triangle"></div>
-    </div>
-    <nav class="dash-nav">
-      <a href="/" class="active">Dashboard</a>
-      <a href="#about">About</a>
-      <a href="#skills">Stack</a>
-      <a href="#projects">Projects</a>
-      <a href="#education">Education</a>
-      <a href="/clock">Clock</a>
-    </nav>
-    <div class="dash-controls">
-      <div class="dash-search">
-        <i class="fas fa-search"></i>
-      </div>
-      <div class="dash-avatar">NK</div>
-    </div>
-  </header>
+  <div class="shell">
+    <!-- ═══════════ Sidebar ═══════════ -->
+    <aside class="side-panel" id="side-panel" aria-label="Profile and navigation">
+      <button class="side-menu-btn" id="side-menu-btn" aria-expanded="false" aria-controls="side-nav" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
 
-  <!-- ═══ Side Nav ═══ -->
-  <section class="start">
-    <nav id="mySidenav" class="sidenav">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
-        <img src="/media-assets/close.png" alt="close menu" />
-      </a>
-      <div class="align-row">
-        <div class="nav-wrapper">
-          <a href="/">Work</a>
-          <a href="#">MyCV</a>
-          <a href="#">Personal</a>
-          <a href="#">About</a>
-          <a href="/clock">Time?</a>
-        </div>
-        <div class="decoration-wrapper">
-          <div class="eye"><img src="/media-assets/deco.png" /></div>
-        </div>
-      </div>
-    </nav>
-
-    <!-- ═══ Hero ═══ -->
-    <div class="main-container">
-      <div class="herotxt">
-        <div class="terminal-line"><span class="prompt">❯</span> <span class="cmd">init --profile developer</span></div>
-        <div class="terminal-line"><span class="prompt">❯</span> <span class="cmd">loading systems... <span style="color:var(--purple)">■</span><span style="color:var(--magenta)">■</span><span style="color:var(--cyan)">■</span> 100%</span></div>
-        <div class="terminal-line"><span class="prompt">❯</span> <span class="cmd">access granted. welcome, user.</span></div>
-
-        <h1 class="hero-title">
-          <span class="chroma" data-text="Nguyễn Ngọc Gia Khang">Nguyễn Ngọc Gia Khang</span>
-        </h1>
-
-        <p class="hero-subtitle">
-          <span class="highlight" id="typewriter">Developer</span><span class="typing-cursor"></span>
-          <br />
-          <span style="font-size:0.75rem;color:var(--text-muted);font-family:var(--font-mono);">Tom Schmidt Müller · Ruan Yu Jia Kang</span>
-        </p>
-
-        <div class="terminal-hero">
-          <div class="term-line"><span class="prompt" style="color:var(--purple)">❯ whoami</span> <span class="cmd">Software Engineering student from Vietnam</span></div>
-          <div class="term-line"><span class="prompt" style="color:var(--purple)">❯ current_focus</span> <span class="cmd">C++ · C# · Python · JS/TS · Linux · Developer Tooling</span></div>
-          <div class="term-line"><span class="prompt" style="color:var(--purple)">❯ university</span> <span class="cmd">HUFLIT · Ho Chi Minh City</span></div>
-          <div class="term-line"><span class="prompt" style="color:var(--purple)">❯ interests</span> <span class="cmd">Software Engineering · Open Source · Systems · Cybersecurity · Web Dev</span></div>
-          <div class="term-line"><span class="prompt" style="color:var(--purple)">❯ philosophy</span> <span class="cmd">Build first. Optimize later.</span></div>
+      <div class="side-inner">
+        <div class="side-profile">
+          <figure class="side-avatar">
+            <img src="/media-assets/avatar.jpg" alt="Nguyễn Ngọc Gia Khang" width="112" height="112" />
+          </figure>
+          <h1 class="side-name">{profile.name}</h1>
+          <p class="side-role">{profile.role}</p>
+          <p class="side-loc"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> {profile.location}</p>
         </div>
 
-        <div class="hero-cta">
-          <button class="btn-neon" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
-            <i class="fas fa-cube"></i>
-            <span>View Projects</span>
-          </button>
-          <button class="btn-neon-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-            <i class="fas fa-terminal"></i>
-            <span>Contact</span>
-          </button>
-        </div>
-
-        <div class="hero-panels">
-          <div class="hero-panel">
-            <span class="label">Status</span>
-            <span class="value green">● Studying</span>
-          </div>
-          <div class="hero-panel">
-            <span class="label">University</span>
-            <span class="value">HUFLIT</span>
-          </div>
-          <div class="hero-panel">
-            <span class="label">Target</span>
-            <span class="value pink">Siheung Univ.</span>
-          </div>
-          <div class="hero-panel">
-            <span class="label">Stack</span>
-            <span class="value">C++, C#, Python, TS</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="outer-heropic-container holo-flicker">
-        <div class="inner-heropic-container">
+        <div class="side-core" aria-hidden="true">
           <div class="reactor">
             <div class="triangle"></div>
             <div class="circle-1"><span></span><span></span><span></span><span></span></div>
@@ -115,636 +102,255 @@ import '../styles/style.css';
             <div class="circle-6"></div>
             <div class="circle-7"><span></span><span></span></div>
           </div>
+          <p class="side-core-label">core://online</p>
         </div>
-        <img src="/media-assets/robothand.png" />
-      </div>
-    </div>
-  </section>
 
-  <!-- ═══ About ═══ -->
-  <section class="cv-about" id="about">
-    <div class="cv-about-grid">
-      <!-- Left: vertical label + avatar placeholder -->
-      <div class="cv-about-side">
-        <span class="cv-about-vertical">ABOUT ME</span>
-        <figure class="cv-avatar">
-          <div class="cv-avatar-frame">
-            <img src="/media-assets/avatar.jpg" alt="Larvene's profile picture">
+        <nav class="side-nav" id="side-nav" aria-label="Section navigation">
+          <span class="side-nav-title">SYSTEM</span>
+          <div class="side-nav-links">
+            {nav.map((item) => <a href={`#${item.id}`}>{item.label}</a>)}
           </div>
-          <figcaption>avatar.jpg</figcaption>
-        </figure>
-      </div>
+        </nav>
 
-      <!-- Right: content -->
-      <div class="cv-about-main">
-        <div class="cv-about-meta">
-          <span>Software Engineering</span>
-          <span>Student</span>
-          <span>2026</span>
+        <div class="side-status">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span class="status-text">Open to internships &amp; projects</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ═══════════ Main content ═══════════ -->
+    <main class="main-content" id="main-content">
+      <!-- Hero -->
+      <section class="section hero" aria-labelledby="hero-title">
+        <div class="terminal-window">
+          <div class="terminal-bar">
+            <span class="term-dot" style="background:#ff5f56"></span>
+            <span class="term-dot" style="background:#ffbd2e"></span>
+            <span class="term-dot" style="background:#27c93f"></span>
+            <span class="term-path">~/profile --zsh</span>
+          </div>
+          <div class="terminal-body">
+            <div class="term-line"><span class="prompt">❯</span> <span class="cmd">whoami</span></div>
+            <div class="term-line"><span class="out">First-year Software Engineering student from Vietnam.</span></div>
+            <div class="term-line"><span class="prompt">❯</span> <span class="cmd">cat current_focus.txt</span></div>
+            <div class="term-line"><span class="out">C++ · C# · Python · JS/TS · Linux · Developer tooling</span></div>
+            <div class="term-line"><span class="prompt">❯</span> <span class="cmd">./university</span></div>
+            <div class="term-line"><span class="out">HUFLIT · Ho Chi Minh City</span></div>
+            <div class="term-line"><span class="prompt">❯</span> <span class="cmd">./greet --name</span></div>
+            <div class="term-line"><span class="out highlight-out">Hi, I'm {profile.name}. Build first. Optimize later.</span></div>
+            <div class="term-line"><span class="prompt">❯</span> <span class="cursor-blink" aria-hidden="true">▋</span></div>
+          </div>
         </div>
 
-        <p class="cv-about-text">
-          First-year Software Engineering student at <strong>HUFLIT</strong> with a practical foundation in
-          programming and software development. Comfortable working with C++, C#, Python, JavaScript, and
-          TypeScript, with experience building small personal projects and exploring different development
-          environments and technologies.
-        </p>
-        <p class="cv-about-text">
-          I learn primarily through hands-on projects and independent experimentation, and I am particularly
-          interested in software engineering, open-source development, systems, and developer tooling. Currently
-          looking to strengthen my professional experience through internships, collaborative projects, and
-          real-world software development.
-        </p>
+        <div class="hero-cta">
+          <a class="btn-neon" href="#projects"><i class="fas fa-cube" aria-hidden="true"></i><span>View Projects</span></a>
+          <a class="btn-neon-outline" href="#contact"><i class="fas fa-terminal" aria-hidden="true"></i><span>Contact</span></a>
+        </div>
+      </section>
 
-        <div class="cv-about-blocks">
-          <div class="cv-about-block">
-            <h3>Education</h3>
+      <!-- About -->
+      <section class="section" id="about" aria-labelledby="about-title">
+        <div class="section-label">~/about</div>
+        <h2 class="section-title" id="about-title">About</h2>
+
+        <div class="content-block">
+          <p class="lead">
+            First-year <strong>Software Engineering</strong> student at <strong>HUFLIT</strong> with a practical foundation
+            in programming and software development. Comfortable working with C++, C#, Python, JavaScript, and TypeScript,
+            and experienced building small personal projects across different environments and technologies.
+          </p>
+          <p>
+            I learn primarily through hands-on projects and independent experimentation, and I am particularly interested
+            in software engineering, open-source development, systems, and developer tooling. I am currently looking to
+            strengthen my professional experience through internships, collaborative projects, and real-world software
+            development.
+          </p>
+        </div>
+
+        <div class="quick-facts">
+          <div class="fact">
+            <span class="fact-label">Education</span>
             <ul>
               <li>HUFLIT · Software Engineering · 2026 – Present</li>
               <li>GDTX Continuing Education · Completed</li>
             </ul>
           </div>
-          <div class="cv-about-block">
-            <h3>Skills</h3>
+          <div class="fact">
+            <span class="fact-label">Status</span>
             <ul>
-              <li>C++ · C# · Python · JavaScript · TypeScript</li>
-              <li>Git · Node.js · Vite · Astro · Tailwind</li>
-              <li>Linux · Windows · Neovim · CLI · .NET</li>
-            </ul>
-          </div>
-          <div class="cv-about-block">
-            <h3>Certifications</h3>
-            <ul>
-              <li>IELTS Academic · 6.5</li>
-              <li>ĐGNL · 710 points</li>
-              <li>Cambridge English B1 · 155</li>
+              <li><span class="status-dot" aria-hidden="true"></span> Studying · HUFLIT</li>
+              <li><span class="status-dot" aria-hidden="true"></span> Target · Siheung Univ.</li>
             </ul>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <style>
-    .cv-about {
-      padding: 90px 0;
-      position: relative;
-      z-index: 1;
-    }
-    .cv-about-grid {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      display: grid;
-      grid-template-columns: minmax(220px, 300px) 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-    .cv-about-side {
-      display: flex;
-      gap: 1.25rem;
-      align-items: center;
-    }
-    .cv-about-vertical {
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.45em;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      white-space: nowrap;
-      padding-top: 0.25rem;
-    }
-    .cv-avatar {
-      margin: 0;
-      width: 100%;
-    }
-    .cv-avatar-frame {
-      position: relative;
-      aspect-ratio: 3 / 4;
-      border: 1px dashed var(--glass-border);
-      background: rgba(10, 3, 20, 0.5);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .cv-avatar-frame::before,
-    .cv-avatar-frame::after {
-      content: '';
-      position: absolute;
-      width: 14px;
-      height: 14px;
-      border: 1px solid var(--purple);
-      z-index: 1;
-      pointer-events: none;
-    }
-    .cv-avatar-frame::before {
-      top: -1px;
-      left: -1px;
-      border-right: none;
-      border-bottom: none;
-    }
-    .cv-avatar-frame::after {
-      bottom: -1px;
-      right: -1px;
-      border-left: none;
-      border-top: none;
-    }
-    .cv-avatar-placeholder {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      letter-spacing: 0.05em;
-    }
-    .cv-avatar figcaption {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      color: var(--text-muted);
-      margin-top: 0.6rem;
-      letter-spacing: 0.05em;
-    }
-    .cv-about-main {
-      border-top: 1px solid var(--glass-border);
-      padding-top: 0.75rem;
-    }
-    .cv-about-meta {
-      display: flex;
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.18em;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      margin-bottom: 1.75rem;
-    }
-    .cv-about-meta span:not(:first-child) {
-      padding-left: 0.75rem;
-      border-left: 1px solid var(--glass-border);
-    }
-    .cv-about-text {
-      font-family: var(--font-body);
-      font-size: 1rem;
-      line-height: 1.8;
-      color: var(--text-secondary);
-      margin-bottom: 1.5rem;
-      max-width: 60ch;
-    }
-    .cv-about-text strong {
-      color: var(--purple);
-      font-weight: 600;
-    }
-    .cv-about-blocks {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      border-top: 1px solid var(--glass-border);
-      padding-top: 1.5rem;
-      margin-top: 1rem;
-    }
-    .cv-about-block h3 {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.25em;
-      color: var(--purple);
-      text-transform: uppercase;
-      margin: 0 0 0.9rem;
-    }
-    .cv-about-block ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-    .cv-about-block li {
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      color: var(--text-secondary);
-      line-height: 1.9;
-      padding-left: 1rem;
-      position: relative;
-    }
-    .cv-about-block li::before {
-      content: '>';
-      position: absolute;
-      left: 0;
-      color: var(--text-muted);
-    }
-    @media (max-width: 768px) {
-      .cv-about-grid {
-        grid-template-columns: minmax(140px, 200px) 1fr;
-        gap: 2rem;
-      }
-      .cv-about-side {
-        gap: 0.75rem;
-      }
-      .cv-about-vertical {
-        font-size: 0.6rem;
-        letter-spacing: 0.3em;
-      }
-      .cv-avatar-placeholder {
-        font-size: 0.65rem;
-      }
-      .cv-about-blocks {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
-
-  <!-- ═══ Skills ═══ -->
-  <section class="skills" id="skills">
-    <div class="section-label">Expertise</div>
-    <h2 class="section-title">Tech Stack</h2>
-
-    <div class="skill-bars">
-      <div class="bar">
-        <div class="info">
-          <span>C++</span>
-          <span>Comfortable</span>
-        </div>
-        <div class="progress-line html"><span></span></div>
-      </div>
-      <div class="bar">
-        <div class="info">
-          <span>C#</span>
-          <span>Comfortable</span>
-        </div>
-        <div class="progress-line css"><span></span></div>
-      </div>
-      <div class="bar">
-        <div class="info">
-          <span>Python</span>
-          <span>Comfortable</span>
-        </div>
-        <div class="progress-line python"><span></span></div>
-      </div>
-      <div class="bar">
-        <div class="info">
-          <span>JavaScript</span>
-          <span>Comfortable</span>
-        </div>
-        <div class="progress-line jquery"><span></span></div>
-      </div>
-      <div class="bar">
-        <div class="info">
-          <span>TypeScript</span>
-          <span>Basic / Intermediate</span>
-        </div>
-        <div class="progress-line mysql"><span></span></div>
-      </div>
-    </div>
-
-    <div style="max-width:700px;margin:2rem auto 0;display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;">
-      <span class="badge"><i class="fab fa-cuttlefish"></i> C++</span>
-      <span class="badge"><i class="fas fa-code"></i> C#</span>
-      <span class="badge"><i class="fab fa-python"></i> Python</span>
-      <span class="badge"><i class="fab fa-js"></i> JavaScript</span>
-      <span class="badge"><i class="fab fa-js"></i> TypeScript</span>
-      <span class="badge"><i class="fab fa-git-alt"></i> Git &amp; GitHub</span>
-      <span class="badge"><i class="fab fa-node-js"></i> Node.js / npm</span>
-      <span class="badge"><i class="fas fa-file-code"></i> JSON</span>
-      <span class="badge"><i class="fab fa-js"></i> Vite</span>
-      <span class="badge"><i class="fas fa-rocket"></i> Astro</span>
-      <span class="badge"><i class="fas fa-palette"></i> Tailwind CSS</span>
-      <span class="badge"><i class="fab fa-microsoft"></i> .NET / Visual Studio</span>
-      <span class="badge"><i class="fab fa-linux"></i> Linux</span>
-      <span class="badge"><i class="fab fa-windows"></i> Windows</span>
-      <span class="badge"><i class="fas fa-terminal"></i> Neovim</span>
-      <span class="badge"><i class="fas fa-microchip"></i> Computer Architecture</span>
-    </div>
-  </section>
-
-  <!-- ═══ Environment ═══ -->
-  <section class="contact-section" style="padding-top:0;">
-    <div class="section-label">Environment</div>
-    <h2 class="section-title">Dev Setup</h2>
-
-    <div class="contact-container" style="max-width:600px;">
-      <div style="font-family:var(--font-mono);font-size:0.8rem;display:flex;flex-direction:column;gap:0.6rem;">
-        <div style="display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid var(--glass-border);">
-          <span style="color:var(--text-muted);">OS</span>
-          <span style="color:var(--cyan);">Linux · Windows</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid var(--glass-border);">
-          <span style="color:var(--text-muted);">Editor</span>
-          <span style="color:var(--cyan);">Neovim</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid var(--glass-border);">
-          <span style="color:var(--text-muted);">CLI</span>
-          <span style="color:var(--cyan);">Command-line environments</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid var(--glass-border);">
-          <span style="color:var(--text-muted);">Frontend</span>
-          <span style="color:var(--cyan);">Vite · Astro · Tailwind</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid var(--glass-border);">
-          <span style="color:var(--text-muted);">Data</span>
-          <span style="color:var(--cyan);">JSON &amp; basic data handling</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid var(--glass-border);">
-          <span style="color:var(--text-muted);">VCS</span>
-          <span style="color:var(--cyan);">Git &amp; GitHub</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;padding:0.5rem 0;">
-          <span style="color:var(--text-muted);">Learning</span>
-          <span style="color:var(--cyan);">Computer architecture · Systems</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ Strengths ═══ -->
-  <section class="contact-section" style="padding-top:0;">
-    <div class="section-label">Capabilities</div>
-    <h2 class="section-title">Strengths</h2>
-
-    <div class="work" style="grid-template-columns:repeat(auto-fill,minmax(320px,1fr));max-width:1100px;margin:20px auto;">
-      <div class="work-item">
-        <div class="work-item-content">
-          <div class="work-item-top" style="padding:0 0 10px;"><i class="fas fa-graduation-cap work-icon"></i></div>
-          <h3>Self-directed learning</h3>
-          <p>Able to learn unfamiliar technologies independently through documentation, experimentation, and project-based practice rather than relying entirely on formal coursework.</p>
-        </div>
-      </div>
-      <div class="work-item">
-        <div class="work-item-content">
-          <div class="work-item-top" style="padding:0 0 10px;"><i class="fas fa-layer-group work-icon"></i></div>
-          <h3>Broad programming foundation</h3>
-          <p>Have worked with several programming languages and paradigms, allowing me to adapt relatively quickly when moving between different technical environments.</p>
-        </div>
-      </div>
-      <div class="work-item">
-        <div class="work-item-content">
-          <div class="work-item-top" style="padding:0 0 10px;"><i class="fas fa-bug work-icon"></i></div>
-          <h3>Problem solving</h3>
-          <p>Enjoy debugging and investigating technical problems, especially when the solution requires understanding what is happening underneath the abstraction rather than simply applying a predefined fix.</p>
-        </div>
-      </div>
-      <div class="work-item">
-        <div class="work-item-content">
-          <div class="work-item-top" style="padding:0 0 10px;"><i class="fas fa-brain work-icon"></i></div>
-          <h3>Technical curiosity</h3>
-          <p>Strong interest in understanding how software and computer systems work, including development tools, operating systems, performance, and lower-level concepts.</p>
-        </div>
-      </div>
-      <div class="work-item">
-        <div class="work-item-content">
-          <div class="work-item-top" style="padding:0 0 10px;"><i class="fas fa-hammer work-icon"></i></div>
-          <h3>Hands-on mindset</h3>
-          <p>Prefer learning by building. Personal projects and experimentation have been an important part of developing my programming skills.</p>
-        </div>
-      </div>
-      <div class="work-item">
-        <div class="work-item-content">
-          <div class="work-item-top" style="padding:0 0 10px;"><i class="fas fa-exchange-alt work-icon"></i></div>
-          <h3>Adaptability</h3>
-          <p>Comfortable moving between different tools, languages, operating systems, and development environments while learning what is necessary for the task.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ Projects ═══ -->
-  <section class="work-container" id="projects">
-    <div class="section-label">Portfolio</div>
-    <h2 class="section-title">Projects</h2>
-
-    <div class="work">
-      <div class="work-item">
-        <div class="work-item-top">
-          <i class="fas fa-coffee work-icon"></i>
-          <span class="work-year">2025</span>
-        </div>
-        <div class="work-item-content">
-          <h3>VietCoffee</h3>
-          <p style="margin-bottom:6px;color:var(--text-muted);font-family:var(--font-mono);font-size:0.7rem;">Café Operations Platform</p>
-          <p>A local-first café management system designed to support real-world business workflows and online interaction.</p>
-          <div style="margin:0.75rem 0;">
-            <span class="minibadge">product management</span>
-            <span class="minibadge">order handling</span>
-            <span class="minibadge">sales workflow</span>
-            <span class="minibadge">offline/local</span>
-          </div>
-          <p style="font-family:var(--font-mono);font-size:0.7rem;color:var(--text-muted);margin-bottom:0.75rem;">JavaScript · HTML/CSS · System Design</p>
-          <a href="https://github.com/larvenejafemcoder" target="_blank" class="work-link"><i class="fab fa-github"></i> GitHub</a>
-        </div>
-      </div>
-      <div class="work-item">
-        <div class="work-item-top">
-          <i class="fas fa-graduation-cap work-icon"></i>
-          <span class="work-year">2025</span>
-        </div>
-        <div class="work-item-content">
-          <h3>ScholarNet VN</h3>
-          <p style="margin-bottom:6px;color:var(--text-muted);font-family:var(--font-mono);font-size:0.7rem;">Vocabulary & University Information Platform</p>
-          <p>Educational web platform focused on vocabulary learning, university admissions, and scholarship discovery.</p>
-          <div style="margin:0.75rem 0;">
-            <span class="minibadge">learning workflows</span>
-            <span class="minibadge">university info</span>
-            <span class="minibadge">progress tracking</span>
-            <span class="minibadge">scholarship discovery</span>
-          </div>
-          <p style="font-family:var(--font-mono);font-size:0.7rem;color:var(--text-muted);margin-bottom:0.75rem;">JavaScript · Web Development · Frontend Systems</p>
-          <a href="https://github.com/larvenejafemcoder" target="_blank" class="work-link"><i class="fab fa-github"></i> GitHub</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ Objectives ═══ -->
-  <section class="contact-section" style="padding-top:0;">
-    <div class="section-label">Roadmap</div>
-    <h2 class="section-title">Current Goal</h2>
-
-    <div class="contact-container" style="max-width:700px;">
-      <p style="font-family:var(--font-body);font-size:0.95rem;color:var(--text-secondary);line-height:1.7;margin-bottom:1.5rem;">
-        Seeking opportunities to gain <span style="color:var(--purple);font-weight:600;">real-world software development experience</span>,
-        contribute to collaborative projects, and gradually develop from a student programmer
-        into a well-rounded software engineer.
-      </p>
-      <ul style="font-family:var(--font-mono);font-size:0.8rem;color:var(--text-secondary);list-style:none;display:flex;flex-direction:column;gap:0.7rem;">
-        <li><span style="color:var(--purple)">⟡</span> Current university: <strong style="color:var(--cyan);">HUFLIT · Software Engineering</strong></li>
-        <li><span style="color:var(--purple)">⟡</span> Dream / target university: <strong style="color:var(--cyan);">Siheung University, South Korea</strong></li>
-        <li><span style="color:var(--purple)">⟡</span> Searching for internships &amp; collaborative projects</li>
-        <li><span style="color:var(--purple)">⟡</span> Contributing to open source / FOSS</li>
-        <li><span style="color:var(--purple)">⟡</span> Deepening systems programming and developer tooling</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ═══ Areas of Interest ═══ -->
-  <section class="contact-section" style="padding-top:0;">
-    <div class="section-label">Signal Map</div>
-    <h2 class="section-title">Areas of Interest</h2>
-
-    <div class="contact-container" style="max-width:700px;">
-      <div style="display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;">
-        <span class="badge"><i class="fas fa-code"></i> Software Engineering</span>
-        <span class="badge"><i class="fas fa-code-branch"></i> Open Source / FOSS</span>
-        <span class="badge"><i class="fas fa-microchip"></i> Systems Programming</span>
-        <span class="badge"><i class="fas fa-tools"></i> Developer Tools</span>
-        <span class="badge"><i class="fab fa-linux"></i> Linux &amp; Operating Systems</span>
-        <span class="badge"><i class="fas fa-globe"></i> Web Development</span>
-        <span class="badge"><i class="fas fa-cpu"></i> Computer Architecture</span>
-        <span class="badge"><i class="fas fa-shield-alt"></i> Cybersecurity</span>
-        <span class="badge"><i class="fas fa-cubes"></i> Software Development Practices</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ GitHub Stats ═══ -->
-  <section class="contact-section" style="padding-top:0;">
-    <div class="section-label">Statistics</div>
-    <h2 class="section-title">GitHub</h2>
-
-    <div class="contact-container" style="max-width:600px;text-align:center;">
-      <div style="display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
-        <img src="https://github-readme-stats.vercel.app/api?username=larvenejafemcoder&show_icons=true&theme=midnight-purple&bg_color=05010A&border_color=9D4EDD&text_color=E0D0FF&title_color=9D4EDD&icon_color=FF00AA" style="max-width:100%;border-radius:8px;border:1px solid var(--glass-border);" />
-        <img src="https://github-readme-streak-stats.herokuapp.com/?user=larvenejafemcoder&theme=midnight-purple&background=05010A&border=9D4EDD&stroke=9D4EDD&ring=FF00AA&fire=FF00AA&currStreakNum=E0D0FF&sideNums=9D4EDD&currStreakLabel=9D4EDD&sideLabels=9D4EDD&dates=E0D0FF" style="max-width:100%;border-radius:8px;border:1px solid var(--glass-border);" />
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ Education ═══ -->
-  <section class="work-container" id="education">
-    <div class="section-label">Academics</div>
-    <h2 class="section-title">Education</h2>
-
-    <div class="contact-container" style="max-width:900px;">
-      <div style="margin-bottom:2rem;">
-        <div class="section-label" style="margin-bottom:0.5rem;">University</div>
-        <div class="work-item" style="overflow:visible;">
-          <div class="work-item-content">
-            <h3>Ho Chi Minh City University of Foreign Languages and Information Technology (HUFLIT)</h3>
-            <p style="margin-bottom:6px;color:var(--text-muted);font-family:var(--font-mono);font-size:0.7rem;">Software Engineering · 2026 – Present</p>
-            <p>First-year Software Engineering student working toward a well-rounded engineering foundation.</p>
-          </div>
-        </div>
-      </div>
-
-      <div style="margin-bottom:2rem;">
-        <div class="section-label" style="margin-bottom:0.5rem;">High School / Continuing Education</div>
-        <div class="work-item" style="overflow:visible;">
-          <div class="work-item-content">
-            <h3>GDTX (Continuing Education)</h3>
-            <p style="margin-bottom:6px;color:var(--text-muted);font-family:var(--font-mono);font-size:0.7rem;">Completed</p>
-            <p>Completed upper-secondary education through the GDTX (Continuing Education) program.</p>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <div class="section-label" style="margin-bottom:0.5rem;">Certifications &amp; Academic Results</div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem;">
-          <div class="work-item" style="overflow:visible;">
-            <div class="work-item-content">
-              <div class="work-item-top" style="padding:0 0 10px;">
-                <i class="fas fa-language work-icon"></i>
-                <span class="work-year">IELTS</span>
-              </div>
-              <h3>Academic: 6.5</h3>
-              <p>Working proficiency in English for academic and technical environments.</p>
+        <h3 class="subhead">Strengths</h3>
+        <div class="grid-cards">
+          {strengths.map((s) => (
+            <div class="card">
+              <div class="card-icon"><i class={`fas ${s.icon}`} aria-hidden="true"></i></div>
+              <h3>{s.title}</h3>
+              <p>{s.text}</p>
             </div>
-          </div>
-          <div class="work-item" style="overflow:visible;">
-            <div class="work-item-content">
-              <div class="work-item-top" style="padding:0 0 10px;">
-                <i class="fas fa-university work-icon"></i>
-                <span class="work-year">ĐGNL</span>
+          ))}
+        </div>
+      </section>
+
+      <!-- Stack -->
+      <section class="section" id="stack" aria-labelledby="stack-title">
+        <div class="section-label">~/stack</div>
+        <h2 class="section-title" id="stack-title">Stack</h2>
+
+        <div class="skill-bars">
+          {stackPrimary.map((s) => (
+            <div class="bar">
+              <div class="info">
+                <span>{s.name}</span>
+                <span class="info-level">{s.level}</span>
               </div>
-              <h3>710 points</h3>
-              <p>Vietnam National University competency assessment.</p>
+              <div class="progress-line"><span style={`width:${s.width}%`}></span></div>
             </div>
+          ))}
+        </div>
+
+        <h3 class="subhead">Tools &amp; Technologies</h3>
+        <div class="badge-cloud">
+          {stackBadges.map((b) => <span class="badge">{b}</span>)}
+        </div>
+
+        <div class="quick-facts">
+          <div class="fact">
+            <span class="fact-label">Dev Setup</span>
+            <ul>
+              <li>OS · Linux / Windows</li>
+              <li>Editor · Neovim</li>
+              <li>Frontend · Vite · Astro · Tailwind</li>
+              <li>VCS · Git &amp; GitHub</li>
+            </ul>
           </div>
-          <div class="work-item" style="overflow:visible;">
-            <div class="work-item-content">
-              <div class="work-item-top" style="padding:0 0 10px;">
-                <i class="fas fa-book work-icon"></i>
-                <span class="work-year">Cambridge</span>
-              </div>
-              <h3>English B1 · 155</h3>
-              <p>Cambridge English qualification at B1 level.</p>
-            </div>
-          </div>
-          <div class="work-item" style="overflow:visible;">
-            <div class="work-item-content">
-              <div class="work-item-top" style="padding:0 0 10px;">
-                <i class="fas fa-trophy work-icon"></i>
-                <span class="work-year">Academics</span>
-              </div>
-              <h3>High-School Performance</h3>
-              <p>Strengths in Informatics, Mathematics, and Technology.</p>
-            </div>
+          <div class="fact">
+            <span class="fact-label">Learning</span>
+            <ul>
+              <li>Computer architecture &amp; systems</li>
+              <li>Open source / FOSS contributions</li>
+              <li>Software development practices</li>
+            </ul>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
-  <!-- ═══ Contact ═══ -->
-  <section class="contact-section" id="contact">
-    <div class="section-label">Transmission</div>
-    <h2 class="section-title">Contact</h2>
+      <!-- Projects -->
+      <section class="section" id="projects" aria-labelledby="projects-title">
+        <div class="section-label">~/projects</div>
+        <h2 class="section-title" id="projects-title">Projects</h2>
 
-    <div class="contact-container">
-      <div style="display:flex;flex-direction:column;gap:1.5rem;font-family:var(--font-mono);font-size:0.85rem;">
-        <a href="mailto:tomkancaston@gmail.com" style="display:flex;align-items:center;gap:1rem;padding:1rem;background:rgba(180,120,255,0.05);border-radius:8px;border:1px solid var(--glass-border);transition:all 0.3s;text-decoration:none;">
-          <i class="fas fa-envelope" style="color:var(--purple);font-size:1.2rem;"></i>
-          <span style="color:var(--text-primary);">tomkancaston@gmail.com</span>
-        </a>
-        <a href="https://github.com/larvenejafemcoder" target="_blank" style="display:flex;align-items:center;gap:1rem;padding:1rem;background:rgba(180,120,255,0.05);border-radius:8px;border:1px solid var(--glass-border);transition:all 0.3s;text-decoration:none;">
-          <i class="fab fa-github" style="color:var(--purple);font-size:1.2rem;"></i>
-          <span style="color:var(--cyan);">github.com/larvenejafemcoder</span>
-        </a>
-      </div>
-    </div>
-  </section>
+        <div class="project-list">
+          {projects.map((p) => (
+            <article class="project-card">
+              <div class="project-head">
+                <i class="fas fa-code-branch project-icon" aria-hidden="true"></i>
+                <div>
+                  <h3>{p.name}</h3>
+                  <p class="project-tag">{p.tag}</p>
+                </div>
+                <span class="project-year">{p.year}</span>
+              </div>
+              <p class="project-desc">{p.description}</p>
+              <div class="project-tags">
+                {p.tags.map((t) => <span class="minibadge">{t}</span>)}
+              </div>
+              <p class="project-tech">{p.tech}</p>
+              <a href={p.github} target="_blank" rel="noopener" class="work-link">
+                <i class="fab fa-github" aria-hidden="true"></i> GitHub
+              </a>
+            </article>
+          ))}
+        </div>
 
-  <!-- ═══ Philosophy ═══ -->
-  <section class="contact-section" style="padding-top:0;padding-bottom:60px;">
-    <div class="contact-container" style="max-width:600px;text-align:center;border-style:dashed;">
-      <p style="font-family:var(--font-mono);font-size:0.85rem;color:var(--text-muted);font-style:italic;">
-        Low-level curiosity with high-level execution.
-      </p>
-      <p style="font-family:var(--font-mono);font-size:0.8rem;color:var(--purple);margin-top:0.5rem;">
-        Still learning. Still building.
-      </p>
-    </div>
-  </section>
+        <div class="github-stats">
+          <img
+            src={`https://github-readme-stats.vercel.app/api?username=larvenejafemcoder&show_icons=true&theme=midnight-purple&bg_color=07030c&border_color=2a1b3d&text_color=bfa9d6&title_color=a259e8&icon_color=00e5ff`}
+            alt="GitHub statistics for larvenejafemcoder"
+            loading="lazy"
+          />
+          <img
+            src={`https://github-readme-streak-stats.herokuapp.com/?user=larvenejafemcoder&theme=midnight-purple&background=07030c&border=2a1b3d&stroke=2a1b3d&ring=a259e8&fire=a259e8&currStreakNum=bfa9d6&sideNums=a259e8&currStreakLabel=a259e8&sideLabels=a259e8&dates=bfa9d6`}
+            alt="GitHub contribution streak for larvenejafemcoder"
+            loading="lazy"
+          />
+        </div>
+      </section>
 
-  <!-- ═══ Footer ═══ -->
-  <footer>
-    <h1>Let's build something together.</h1>
-    <div class="social">
-      <div class="social-icon">
-        <a href="#"><img src="/media-assets/main/discord.png" /></a>
-      </div>
-      <div class="social-icon">
-        <a href="https://github.com/larvenejafemcoder" target="_blank"><img src="/media-assets/main/github.png" /></a>
-      </div>
-      <div class="social-icon">
-        <a href="#"><img src="/media-assets/main/linkedin.png" /></a>
-      </div>
-      <div class="social-icon">
-        <a href="#"><img src="/media-assets/main/youtube.png" /></a>
-      </div>
-      <div class="social-icon">
-        <a href="#"><img src="/media-assets/main/facebook.png" /></a>
-      </div>
-    </div>
-    <p>
-      © 2026 <span class="gradient-text">Nguyễn Ngọc Gia Khang</span>
-      <img src="/media-assets/CyZerO.webp" />
-    </p>
-  </footer>
+      <!-- Education -->
+      <section class="section" id="education" aria-labelledby="education-title">
+        <div class="section-label">~/education</div>
+        <h2 class="section-title" id="education-title">Education</h2>
 
-  <audio id="myAudio">
-    <source src="/media-assets/soundtracks/main.mp3" type="audio/mpeg" />
-    Your browser does not support the audio element.
-  </audio>
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-body">
+              <p class="timeline-meta">2026 — Present</p>
+              <h3>HUFLIT · Software Engineering</h3>
+              <p>Ho Chi Minh City University of Foreign Languages and Information Technology. First-year Software Engineering student working toward a well-rounded engineering foundation.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-body">
+              <p class="timeline-meta">Completed</p>
+              <h3>GDTX Continuing Education</h3>
+              <p>Completed upper-secondary education through the GDTX (Continuing Education) program.</p>
+            </div>
+          </article>
+        </div>
 
-  <script src="/myscript.js" is:inline></script>
-  <script>
-    var x = document.getElementById("myAudio");
-    function playAudio() { x.play(); }
-    function pauseAudio() { x.pause(); }
-  </script>
+        <h3 class="subhead">Certifications &amp; Results</h3>
+        <div class="grid-cards cert-grid">
+          {certifications.map((c) => (
+            <div class="card">
+              <div class="card-icon"><i class={`fas ${c.icon}`} aria-hidden="true"></i></div>
+              <p class="card-label">{c.name}</p>
+              <h3>{c.value}</h3>
+              <p>{c.note}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section class="section" id="contact" aria-labelledby="contact-title">
+        <div class="section-label">~/contact</div>
+        <h2 class="section-title" id="contact-title">Contact</h2>
+        <p class="lead">Have a project, an internship, or just want to say hi? My inbox is open.</p>
+
+        <div class="contact-links">
+          <a class="contact-link" href={`mailto:${profile.email}`}>
+            <i class="fas fa-envelope" aria-hidden="true"></i>
+            <span class="contact-key">email</span>
+            <span class="contact-val">{profile.email}</span>
+          </a>
+          <a class="contact-link" href={profile.github} target="_blank" rel="noopener">
+            <i class="fab fa-github" aria-hidden="true"></i>
+            <span class="contact-key">github</span>
+            <span class="contact-val">{profile.githubHandle}</span>
+          </a>
+          <div class="contact-link is-placeholder">
+            <i class="fab fa-linkedin" aria-hidden="true"></i>
+            <span class="contact-key">linkedin</span>
+            <span class="contact-val">YOUR_LINKEDIN_URL</span>
+            <span class="contact-note">add your profile URL</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="main-footer">
+        <p class="footer-quote">Low-level curiosity with high-level execution.</p>
+        <p class="footer-line">Still learning. Still building.</p>
+        <p class="footer-copy">© 2026 {profile.name}</p>
+      </footer>
+    </main>
+  </div>
 </BaseLayout>

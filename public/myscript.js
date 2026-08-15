@@ -1,26 +1,71 @@
 /* =============================================
-   CYBER PURPLE — Interaction Engine
+   NGOC GIA KHANG — Interaction Engine
+   v3.0 — Developer Workstation
    ============================================= */
 
-// ─── Side Navigation ───
-function openNav() {
-  var nav = document.getElementById("mySidenav");
-  if (nav) nav.style.width = "100%";
-  var tri = document.getElementById("head-triangle");
-  if (tri) tri.classList.add("glow");
-}
+var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-function closeNav() {
-  var nav = document.getElementById("mySidenav");
-  if (nav) nav.style.width = "0";
-  var tri = document.getElementById("head-triangle");
-  if (tri) tri.classList.remove("glow");
-}
+// ─── Mobile Drawer ───
+(function initMobileNav() {
+  var panel = document.getElementById("side-panel");
+  if (!panel) return;
+  var btn = document.getElementById("side-menu-btn");
+  if (!btn) return;
+
+  function setOpen(open) {
+    panel.classList.toggle("nav-open", open);
+    btn.setAttribute("aria-expanded", String(open));
+  }
+
+  btn.addEventListener("click", function () {
+    setOpen(!panel.classList.contains("nav-open"));
+  });
+
+  panel.querySelectorAll(".side-nav-links a").forEach(function (link) {
+    link.addEventListener("click", function () {
+      setOpen(false);
+    });
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") setOpen(false);
+  });
+
+  window.addEventListener("resize", function () {
+    if (window.innerWidth >= 1024) setOpen(false);
+  });
+})();
+
+// ─── Active Nav on Scroll ───
+(function initScrollSpy() {
+  var links = document.querySelectorAll(".side-nav-links a[href^='#']");
+  if (!links.length) return;
+  var sections = Array.prototype.map.call(links, function (link) {
+    return document.getElementById(link.getAttribute("href").slice(1));
+  }).filter(Boolean);
+  if (!sections.length) return;
+
+  var observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        links.forEach(function (link) {
+          link.classList.toggle("active", link.getAttribute("href") === "#" + entry.target.id);
+        });
+      });
+    },
+    { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
+  );
+
+  sections.forEach(function (section) {
+    observer.observe(section);
+  });
+})();
 
 // ─── Cursor Glow ───
 (function initCursorGlow() {
   var glow = document.getElementById("cursor-glow");
-  if (!glow) return;
+  if (!glow || reduceMotion) return;
   var x = window.innerWidth / 2, y = window.innerHeight / 2;
 
   document.addEventListener("mousemove", function (e) {
@@ -46,7 +91,7 @@ function closeNav() {
 // ─── Particle System ───
 (function initParticles() {
   var canvas = document.getElementById("particle-canvas");
-  if (!canvas) return;
+  if (!canvas || reduceMotion) return;
   var ctx = canvas.getContext("2d");
   var particles = [];
   var mouse = { x: -1000, y: -1000 };
@@ -73,7 +118,7 @@ function closeNav() {
       vy: (Math.random() - 0.5) * 0.3 - 0.1,
       size: Math.random() * 2 + 0.5,
       alpha: Math.random() * 0.4 + 0.1,
-      hue: Math.random() > 0.5 ? 270 : 320 // purple or magenta hues
+      hue: Math.random() > 0.5 ? 270 : 320
     });
   }
 
@@ -83,7 +128,6 @@ function closeNav() {
     for (var i = 0; i < particles.length; i++) {
       var p = particles[i];
 
-      // Mouse repel
       var dx = mouse.x - p.x;
       var dy = mouse.y - p.y;
       var dist = Math.sqrt(dx * dx + dy * dy);
@@ -108,7 +152,6 @@ function closeNav() {
       ctx.fillStyle = "hsla(" + p.hue + ", 80%, 60%, " + p.alpha + ")";
       ctx.fill();
 
-      // Connection lines
       for (var j = i + 1; j < particles.length; j++) {
         var p2 = particles[j];
         var dx2 = p.x - p2.x;
@@ -133,6 +176,7 @@ function closeNav() {
 
 // ─── Magnetic Buttons ───
 (function initMagneticButtons() {
+  if (reduceMotion) return;
   var buttons = document.querySelectorAll(".btn-neon, .btn-neon-outline");
   buttons.forEach(function (btn) {
     btn.addEventListener("mousemove", function (e) {
@@ -148,78 +192,20 @@ function closeNav() {
   });
 })();
 
-// ─── Work Card Tilt ───
+// ─── Project Card Tilt ───
 (function initCardTilt() {
-  var cards = document.querySelectorAll(".work-item");
+  if (reduceMotion) return;
+  var cards = document.querySelectorAll(".project-card");
   cards.forEach(function (card) {
     card.addEventListener("mousemove", function (e) {
       var rect = card.getBoundingClientRect();
       var x = (e.clientX - rect.left) / rect.width - 0.5;
       var y = (e.clientY - rect.top) / rect.height - 0.5;
       card.style.transform =
-        "perspective(800px) rotateY(" + x * 6 + "deg) rotateX(" + (-y * 6) + "deg) translateY(-6px) scale(1.01)";
+        "perspective(800px) rotateY(" + x * 3 + "deg) rotateX(" + (-y * 3) + "deg) translateY(-4px)";
     });
     card.addEventListener("mouseleave", function () {
-      card.style.transform = "perspective(800px) rotateY(0deg) rotateX(0deg) translateY(0) scale(1)";
+      card.style.transform = "perspective(800px) rotateY(0deg) rotateX(0deg) translateY(0)";
     });
-  });
-})();
-
-// ─── Hero Terminal Typing ───
-(function initTerminalType() {
-  var el = document.getElementById("typewriter");
-  if (!el) return;
-  var words = ["Software Engineer", "Systems Enthusiast", "Self-taught Learner", "Open Source Explorer"];
-  var wordIndex = 0;
-  var charIndex = 0;
-  var isDeleting = false;
-
-  function type() {
-    var current = words[wordIndex];
-    if (isDeleting) {
-      el.textContent = current.substring(0, charIndex - 1);
-      charIndex--;
-    } else {
-      el.textContent = current.substring(0, charIndex + 1);
-      charIndex++;
-    }
-
-    if (!isDeleting && charIndex === current.length) {
-      isDeleting = true;
-      setTimeout(type, 2000);
-      return;
-    }
-    if (isDeleting && charIndex === 0) {
-      isDeleting = false;
-      wordIndex = (wordIndex + 1) % words.length;
-      setTimeout(type, 400);
-      return;
-    }
-
-    setTimeout(type, isDeleting ? 40 : 80);
-  }
-  type();
-})();
-
-// ─── Section Reveal Observer ───
-(function initSectionReveal() {
-  var sections = document.querySelectorAll("section");
-  var observer = new IntersectionObserver(
-    function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = "1";
-          entry.target.style.transform = "translateY(0)";
-        }
-      });
-    },
-    { threshold: 0.1 }
-  );
-
-  sections.forEach(function (section) {
-    section.style.opacity = "0";
-    section.style.transform = "translateY(30px)";
-    section.style.transition = "all 0.8s cubic-bezier(0.16, 1, 0.3, 1)";
-    observer.observe(section);
   });
 })();
