@@ -4,7 +4,7 @@ export interface Props {
   description?: string;
 }
 
-const { title, description = "CYBER//DECK :: Nguyễn Ngọc Gia Khang — Portfolio" } = Astro.props;
+const { title, description = "Nguyễn Ngọc Gia Khang — Software Engineering Student, Ho Chi Minh City" } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -15,8 +15,8 @@ const { title, description = "CYBER//DECK :: Nguyễn Ngọc Gia Khang — Portf
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="keywords" content="blockchain, developer, cyber, portfolio" />
-    <meta name="author" content="Thomas Schimdst Müller" />
+    <meta name="keywords" content="software engineering, portfolio, developer, vietnam, c++, c#, python" />
+    <meta name="author" content="Nguyễn Ngọc Gia Khang" />
     <link rel="icon" type="image/x-icon" href="/media-assets/andzilogoW.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -29,14 +29,12 @@ const { title, description = "CYBER//DECK :: Nguyễn Ngọc Gia Khang — Portf
       referrerpolicy="no-referrer"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Fira+Code:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
-    <div id="particle-canvas"></div>
-    <div id="cursor-glow"></div>
     <slot />
   </body>
 </html>

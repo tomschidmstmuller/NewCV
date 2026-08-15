@@ -3,17 +3,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/style.css';
 ---
 
-<BaseLayout title="Chrono Terminal :: Nguyễn Ngọc Gia Khang">
-  <div class="scanlines"></div>
-
+<BaseLayout title="Local Time :: Nguyễn Ngọc Gia Khang">
   <header class="clock-nav">
     <a href="/" class="clock-back"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back to portfolio</a>
-    <span class="clock-title">chrono://system-time</span>
+    <span class="clock-title">~/system-time</span>
   </header>
 
   <main class="clock-main">
     <div class="clock">
-      <div class="clock-terminal">❯ system_time --live</div>
+      <div class="clock-terminal">❯ localtime</div>
       <p class="clock-day" id="day">--day--</p>
       <p class="clock-time" id="time">00:00:00</p>
       <p class="clock-midday" id="midday">XX</p>
@@ -109,7 +107,7 @@ import '../styles/style.css';
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--glass-border);
-    box-shadow: 0 0 24px rgba(0, 168, 143, 0.06);
+    box-shadow: var(--shadow-md);
     text-align: center;
   }
   .clock-terminal {

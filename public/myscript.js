@@ -1,6 +1,6 @@
 /* =============================================
-   NGOC GIA KHANG — Interaction Engine
-   v3.0 — Developer Workstation
+   Nguyễn Ngọc Gia Khang — Interaction Engine
+   v4.0 — Minimal engineering portfolio
    ============================================= */
 
 var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -62,150 +62,28 @@ var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
   });
 })();
 
-// ─── Cursor Glow ───
-(function initCursorGlow() {
-  var glow = document.getElementById("cursor-glow");
-  if (!glow || reduceMotion) return;
-  var x = window.innerWidth / 2, y = window.innerHeight / 2;
-
-  document.addEventListener("mousemove", function (e) {
-    x = e.clientX;
-    y = e.clientY;
-    glow.style.opacity = "1";
-  });
-
-  document.addEventListener("mouseleave", function () {
-    glow.style.opacity = "0";
-  });
-
-  function tick() {
-    var cx = parseFloat(glow.style.left) || window.innerWidth / 2;
-    var cy = parseFloat(glow.style.top) || window.innerHeight / 2;
-    glow.style.left = cx + (x - cx) * 0.08 + "px";
-    glow.style.top = cy + (y - cy) * 0.08 + "px";
-    requestAnimationFrame(tick);
-  }
-  tick();
-})();
-
-// ─── Particle System ───
-(function initParticles() {
-  var canvas = document.getElementById("particle-canvas");
-  if (!canvas || reduceMotion) return;
-  var ctx = canvas.getContext("2d");
-  var particles = [];
-  var mouse = { x: -1000, y: -1000 };
-
-  function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener("resize", resize);
-
-  document.addEventListener("mousemove", function (e) {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-  });
-
-  var count = Math.min(80, Math.floor(window.innerWidth / 12));
-
-  for (var i = 0; i < count; i++) {
-    particles.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.3,
-      vy: (Math.random() - 0.5) * 0.3 - 0.1,
-      size: Math.random() * 2 + 0.5,
-      alpha: Math.random() * 0.4 + 0.1,
-      hue: Math.random() > 0.5 ? 270 : 320
-    });
+// ─── Section Reveal ───
+(function initReveal() {
+  var targets = document.querySelectorAll(".reveal");
+  if (!targets.length) return;
+  if (reduceMotion || !("IntersectionObserver" in window)) {
+    targets.forEach(function (el) { el.classList.add("visible"); });
+    return;
   }
 
-  function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    for (var i = 0; i < particles.length; i++) {
-      var p = particles[i];
-
-      var dx = mouse.x - p.x;
-      var dy = mouse.y - p.y;
-      var dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < 200) {
-        var force = (200 - dist) / 200 * 0.5;
-        p.vx -= (dx / dist) * force * 0.05;
-        p.vy -= (dy / dist) * force * 0.05;
-      }
-
-      p.x += p.vx;
-      p.y += p.vy;
-      p.vx *= 0.99;
-      p.vy *= 0.99;
-
-      if (p.x < 0) p.x = canvas.width;
-      if (p.x > canvas.width) p.x = 0;
-      if (p.y < 0) p.y = canvas.height;
-      if (p.y > canvas.height) p.y = 0;
-
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = "hsla(" + p.hue + ", 80%, 60%, " + p.alpha + ")";
-      ctx.fill();
-
-      for (var j = i + 1; j < particles.length; j++) {
-        var p2 = particles[j];
-        var dx2 = p.x - p2.x;
-        var dy2 = p.y - p2.y;
-        var dist2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
-        if (dist2 < 120) {
-          ctx.beginPath();
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(p2.x, p2.y);
-          ctx.strokeStyle = "hsla(270, 60%, 60%, " + (1 - dist2 / 120) * 0.08 + ")";
-          ctx.lineWidth = 0.5;
-          ctx.stroke();
+  var observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
         }
-      }
-    }
+      });
+    },
+    { rootMargin: "0px 0px -10% 0px", threshold: 0 }
+  );
 
-    requestAnimationFrame(draw);
-  }
-
-  draw();
-})();
-
-// ─── Magnetic Buttons ───
-(function initMagneticButtons() {
-  if (reduceMotion) return;
-  var buttons = document.querySelectorAll(".btn-neon, .btn-neon-outline");
-  buttons.forEach(function (btn) {
-    btn.addEventListener("mousemove", function (e) {
-      var rect = btn.getBoundingClientRect();
-      var x = e.clientX - rect.left - rect.width / 2;
-      var y = e.clientY - rect.top - rect.height / 2;
-      btn.style.transform =
-        "translate(" + x * 0.15 + "px, " + y * 0.15 + "px)";
-    });
-    btn.addEventListener("mouseleave", function () {
-      btn.style.transform = "translate(0, 0)";
-    });
-  });
-})();
-
-// ─── Project Card Tilt ───
-(function initCardTilt() {
-  if (reduceMotion) return;
-  var cards = document.querySelectorAll(".project-card");
-  cards.forEach(function (card) {
-    card.addEventListener("mousemove", function (e) {
-      var rect = card.getBoundingClientRect();
-      var x = (e.clientX - rect.left) / rect.width - 0.5;
-      var y = (e.clientY - rect.top) / rect.height - 0.5;
-      card.style.transform =
-        "perspective(800px) rotateY(" + x * 3 + "deg) rotateX(" + (-y * 3) + "deg) translateY(-4px)";
-    });
-    card.addEventListener("mouseleave", function () {
-      card.style.transform = "perspective(800px) rotateY(0deg) rotateX(0deg) translateY(0)";
-    });
+  targets.forEach(function (el) {
+    observer.observe(el);
   });
 })();

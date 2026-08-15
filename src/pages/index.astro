@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import BootScreen from '../components/BootScreen.astro';
 import '../styles/style.css';
 
 const profile = {
@@ -10,13 +9,13 @@ const profile = {
   github: 'https://github.com/larvenejafemcoder',
   githubHandle: 'github.com/larvenejafemcoder',
   location: 'Ho Chi Minh City, Vietnam',
+  tagline: 'Software engineering student building software, tools, and experiments.',
 };
 
 const nav = [
   { id: 'about', label: '~/about' },
-  { id: 'stack', label: '~/stack' },
   { id: 'projects', label: '~/projects' },
-  { id: 'education', label: '~/education' },
+  { id: 'stack', label: '~/stack' },
   { id: 'contact', label: '~/contact' },
 ];
 
@@ -42,6 +41,8 @@ const projects = [
     description: 'A local-first café management system designed to support real-world business workflows and online interaction.',
     tags: ['product management', 'order handling', 'sales workflow', 'offline/local'],
     tech: 'JavaScript · HTML/CSS · System Design',
+    status: 'Personal project',
+    preview: '/media-assets/vietcoffee.png',
     github: 'https://github.com/larvenejafemcoder',
   },
   {
@@ -51,6 +52,8 @@ const projects = [
     description: 'Educational web platform focused on vocabulary learning, university admissions, and scholarship discovery.',
     tags: ['learning workflows', 'university info', 'progress tracking', 'scholarship discovery'],
     tech: 'JavaScript · Web Development · Frontend Systems',
+    status: 'Personal project',
+    preview: '/media-assets/scholarnet.png',
     github: 'https://github.com/larvenejafemcoder',
   },
 ];
@@ -73,17 +76,21 @@ const certifications = [
 ---
 
 <BaseLayout title="Nguyễn Ngọc Gia Khang — Software Engineering Student">
-  <BootScreen />
-  <div class="scanlines"></div>
-
   <div class="shell">
-    <!-- ═══════════ Sidebar ═══════════ -->
+    <!-- ═══════════ Profile sidebar ═══════════ -->
     <aside class="side-panel" id="side-panel" aria-label="Profile and navigation">
       <button class="side-menu-btn" id="side-menu-btn" aria-expanded="false" aria-controls="side-nav" aria-label="Toggle navigation">
         <span></span><span></span><span></span>
       </button>
 
       <div class="side-inner">
+        <div class="side-brand">
+          <span class="side-brand-mark">
+            <img src="/media-assets/andzilogoW.png" alt="" width="40" height="40" />
+          </span>
+          <span>PROFILE</span>
+        </div>
+
         <div class="side-profile">
           <figure class="side-avatar">
             <img src="/media-assets/avatar.jpg" alt="Nguyễn Ngọc Gia Khang" width="112" height="112" />
@@ -91,24 +98,11 @@ const certifications = [
           <h1 class="side-name">{profile.name}</h1>
           <p class="side-role">{profile.role}</p>
           <p class="side-loc"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> {profile.location}</p>
-        </div>
-
-        <div class="side-core" aria-hidden="true">
-          <div class="reactor">
-            <div class="triangle"></div>
-            <div class="circle-1"><span></span><span></span><span></span><span></span></div>
-            <div class="circle-2"></div>
-            <div class="circle-3"><span></span><span></span><span></span></div>
-            <div class="circle-4"><span></span><span></span><span></span></div>
-            <div class="circle-5"></div>
-            <div class="circle-6"></div>
-            <div class="circle-7"><span></span><span></span></div>
-          </div>
-          <p class="side-core-label">core://online</p>
+          <p class="side-tagline">{profile.tagline}</p>
         </div>
 
         <nav class="side-nav" id="side-nav" aria-label="Section navigation">
-          <span class="side-nav-title">SYSTEM</span>
+          <span class="side-nav-title">NAVIGATION</span>
           <div class="side-nav-links">
             {nav.map((item) => <a href={`#${item.id}`}>{item.label}</a>)}
           </div>
@@ -116,7 +110,7 @@ const certifications = [
 
         <div class="side-status">
           <span class="status-dot" aria-hidden="true"></span>
-          <span class="status-text">Open to internships &amp; projects</span>
+          <span class="status-text">Available</span>
         </div>
       </div>
     </aside>
@@ -124,35 +118,99 @@ const certifications = [
     <!-- ═══════════ Main content ═══════════ -->
     <main class="main-content" id="main-content" tabindex="-1">
       <!-- Hero -->
-      <section class="section hero" aria-labelledby="hero-title">
-        <div class="terminal-window">
+      <section class="section hero reveal" aria-labelledby="hero-title">
+        <p class="hero-kicker">Software Engineering Student — Ho Chi Minh City</p>
+        <h1 class="hero-name" id="hero-title">{profile.name}</h1>
+        <p class="hero-role">{profile.role}</p>
+        <p class="hero-desc">
+          I build software, developer tools, and experiments while exploring how computers actually work.
+        </p>
+
+        <div class="btn-row">
+          <a class="btn btn-primary" href="#projects">View Projects <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+          <a class="btn btn-secondary" href={profile.github} target="_blank" rel="noopener">
+            GitHub <i class="fab fa-github" aria-hidden="true"></i>
+          </a>
+        </div>
+
+        <div class="terminal-window" role="presentation">
           <div class="terminal-bar">
             <span class="term-dot" style="background:#ff5f56"></span>
             <span class="term-dot" style="background:#ffbd2e"></span>
             <span class="term-dot" style="background:#27c93f"></span>
-            <span class="term-path">~/profile --zsh</span>
+            <span class="term-path">~/profile — zsh</span>
           </div>
           <div class="terminal-body">
-            <div class="term-line"><span class="prompt">❯</span> <span class="cmd">whoami</span></div>
-            <div class="term-line"><span class="out">First-year Software Engineering student from Vietnam.</span></div>
-            <div class="term-line"><span class="prompt">❯</span> <span class="cmd">cat current_focus.txt</span></div>
-            <div class="term-line"><span class="out">C++ · C# · Python · JS/TS · Linux · Developer tooling</span></div>
-            <div class="term-line"><span class="prompt">❯</span> <span class="cmd">./university</span></div>
-            <div class="term-line"><span class="out">HUFLIT · Ho Chi Minh City</span></div>
-            <div class="term-line"><span class="prompt">❯</span> <span class="cmd">./greet --name</span></div>
-            <div class="term-line"><span class="out highlight-out glitch" data-text={`Hi, I'm ${profile.name}. Build first. Optimize later.`}>Hi, I'm {profile.name}. Build first. Optimize later.</span></div>
-            <div class="term-line"><span class="prompt">❯</span> <span class="cursor-blink" aria-hidden="true">▋</span></div>
+            <div class="term-line"><span class="prompt">$</span> <span class="cmd">whoami</span></div>
+            <div class="term-line"><span class="out">{profile.name}</span></div>
+            <div class="term-line"><span class="out-sec">{profile.role}</span></div>
+            <div class="term-line"><span class="out-sec">{profile.location}</span></div>
+            <div class="term-gap"></div>
+            <div class="term-line"><span class="prompt">$</span> <span class="cmd">./focus</span></div>
+            <div class="term-line"><span class="out">C++ · C# · Python · JavaScript/TypeScript</span></div>
+            <div class="term-line"><span class="out-sec">Linux · Developer Tooling</span></div>
+            <div class="term-gap"></div>
+            <div class="term-line"><span class="prompt">$</span> <span class="cursor-blink" aria-hidden="true"></span></div>
           </div>
         </div>
+      </section>
 
-        <div class="hero-cta">
-          <a class="btn-neon" href="#projects"><i class="fas fa-cube" aria-hidden="true"></i><span>View Projects</span></a>
-          <a class="btn-neon-outline" href="#contact"><i class="fas fa-terminal" aria-hidden="true"></i><span>Contact</span></a>
+      <!-- Featured work -->
+      <section class="section reveal" id="projects" aria-labelledby="projects-title">
+        <div class="section-label">~/projects</div>
+        <h2 class="section-title" id="projects-title">Featured Work</h2>
+
+        <div class="project-grid">
+          {projects.map((p) => (
+            <article class="project-card">
+              <div class="project-shot">
+                <div class="project-shot-fallback">
+                  <span class="fb-label">{p.tag}</span>
+                  <span class="fb-name">{p.name}</span>
+                  <span class="fb-hint">Preview image pending</span>
+                </div>
+                <img src={p.preview} alt={`${p.name} preview`} loading="lazy" onerror="this.style.display='none'" />
+              </div>
+              <div class="project-card-body">
+                <div class="project-head">
+                  <h3>{p.name}</h3>
+                  <span class="project-year">{p.year}</span>
+                </div>
+                <p class="project-tag">{p.tag}</p>
+                <p class="project-desc">{p.description}</p>
+                <div class="project-meta">
+                  <span class="project-status"><span class="status-dot" aria-hidden="true"></span>{p.status}</span>
+                  <span class="project-tech">{p.tech}</span>
+                </div>
+                <div class="project-links">
+                  <a href={p.github} target="_blank" rel="noopener">
+                    <i class="fab fa-github" aria-hidden="true"></i> GitHub
+                  </a>
+                  <a href={p.github} target="_blank" rel="noopener">
+                    View Project <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div class="github-stats">
+          <img
+            src={`https://github-readme-stats.vercel.app/api?username=larvenejafemcoder&show_icons=true&theme=transparent&bg_color=F7F8F6&border_color=DCE3E0&text_color=66716E&title_color=009E87&icon_color=009E87`}
+            alt="GitHub statistics for larvenejafemcoder"
+            loading="lazy"
+          />
+          <img
+            src={`https://github-readme-streak-stats.herokuapp.com/?user=larvenejafemcoder&theme=transparent&background=F7F8F6&border=DCE3E0&stroke=DCE3E0&ring=009E87&fire=009E87&currStreakNum=17201E&sideNums=009E87&currStreakLabel=009E87&sideLabels=66716E&dates=66716E`}
+            alt="GitHub contribution streak for larvenejafemcoder"
+            loading="lazy"
+          />
         </div>
       </section>
 
       <!-- About -->
-      <section class="section" id="about" aria-labelledby="about-title">
+      <section class="section reveal" id="about" aria-labelledby="about-title">
         <div class="section-label">~/about</div>
         <h2 class="section-title" id="about-title">About</h2>
 
@@ -162,29 +220,6 @@ const certifications = [
             in programming and software development. Comfortable working with C++, C#, Python, JavaScript, and TypeScript,
             and experienced building small personal projects across different environments and technologies.
           </p>
-          <p>
-            I learn primarily through hands-on projects and independent experimentation, and I am particularly interested
-            in software engineering, open-source development, systems, and developer tooling. I am currently looking to
-            strengthen my professional experience through internships, collaborative projects, and real-world software
-            development.
-          </p>
-        </div>
-
-        <div class="quick-facts">
-          <div class="fact">
-            <span class="fact-label">Education</span>
-            <ul>
-              <li>HUFLIT · Software Engineering · 2026 – Present</li>
-              <li>GDTX Continuing Education · Completed</li>
-            </ul>
-          </div>
-          <div class="fact">
-            <span class="fact-label">Status</span>
-            <ul>
-              <li><span class="status-dot" aria-hidden="true"></span> Studying · HUFLIT</li>
-              <li><span class="status-dot" aria-hidden="true"></span> Target · Siheung Univ.</li>
-            </ul>
-          </div>
         </div>
 
         <h3 class="subhead">Strengths</h3>
@@ -197,10 +232,20 @@ const certifications = [
             </div>
           ))}
         </div>
+
+        <div class="quick-facts">
+          <div class="fact">
+            <span class="fact-label">Status</span>
+            <ul>
+              <li><span class="status-dot" aria-hidden="true"></span> Studying · HUFLIT</li>
+              <li><span class="status-dot" aria-hidden="true"></span> Target · Siheung Univ.</li>
+            </ul>
+          </div>
+        </div>
       </section>
 
       <!-- Stack -->
-      <section class="section" id="stack" aria-labelledby="stack-title">
+      <section class="section reveal" id="stack" aria-labelledby="stack-title">
         <div class="section-label">~/stack</div>
         <h2 class="section-title" id="stack-title">Stack</h2>
 
@@ -242,50 +287,8 @@ const certifications = [
         </div>
       </section>
 
-      <!-- Projects -->
-      <section class="section" id="projects" aria-labelledby="projects-title">
-        <div class="section-label">~/projects</div>
-        <h2 class="section-title" id="projects-title">Projects</h2>
-
-        <div class="project-list">
-          {projects.map((p) => (
-            <article class="project-card">
-              <div class="project-head">
-                <i class="fas fa-code-branch project-icon" aria-hidden="true"></i>
-                <div>
-                  <h3>{p.name}</h3>
-                  <p class="project-tag">{p.tag}</p>
-                </div>
-                <span class="project-year">{p.year}</span>
-              </div>
-              <p class="project-desc">{p.description}</p>
-              <div class="project-tags">
-                {p.tags.map((t) => <span class="minibadge">{t}</span>)}
-              </div>
-              <p class="project-tech">{p.tech}</p>
-              <a href={p.github} target="_blank" rel="noopener" class="work-link">
-                <i class="fab fa-github" aria-hidden="true"></i> GitHub
-              </a>
-            </article>
-          ))}
-        </div>
-
-        <div class="github-stats">
-          <img
-            src={`https://github-readme-stats.vercel.app/api?username=larvenejafemcoder&show_icons=true&theme=midnight-purple&bg_color=07030c&border_color=2a1b3d&text_color=bfa9d6&title_color=a259e8&icon_color=00e5ff`}
-            alt="GitHub statistics for larvenejafemcoder"
-            loading="lazy"
-          />
-          <img
-            src={`https://github-readme-streak-stats.herokuapp.com/?user=larvenejafemcoder&theme=midnight-purple&background=07030c&border=2a1b3d&stroke=2a1b3d&ring=a259e8&fire=a259e8&currStreakNum=bfa9d6&sideNums=a259e8&currStreakLabel=a259e8&sideLabels=a259e8&dates=bfa9d6`}
-            alt="GitHub contribution streak for larvenejafemcoder"
-            loading="lazy"
-          />
-        </div>
-      </section>
-
       <!-- Education -->
-      <section class="section" id="education" aria-labelledby="education-title">
+      <section class="section reveal" id="education" aria-labelledby="education-title">
         <div class="section-label">~/education</div>
         <h2 class="section-title" id="education-title">Education</h2>
 
@@ -322,7 +325,7 @@ const certifications = [
       </section>
 
       <!-- Contact -->
-      <section class="section" id="contact" aria-labelledby="contact-title">
+      <section class="section reveal" id="contact" aria-labelledby="contact-title">
         <div class="section-label">~/contact</div>
         <h2 class="section-title" id="contact-title">Contact</h2>
         <p class="lead">Have a project, an internship, or just want to say hi? My inbox is open.</p>
@@ -355,4 +358,6 @@ const certifications = [
       </footer>
     </main>
   </div>
+
+  <script src="/myscript.js" is:inline></script>
 </BaseLayout>
