@@ -524,6 +524,113 @@ strong {
 /* ============================================================
    Featured work
    ============================================================ */
+.filter-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-bottom: 1.9rem;
+  list-style: none;
+}
+
+.filter-btn {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.42rem 1.1rem;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, border-color 0.18s;
+}
+
+.filter-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent-dark);
+}
+
+.filter-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* mobile/tablet dropdown */
+.filter-select-box {
+  display: none;
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.filter-select {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.7rem 1rem;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.select-icon {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  transition: transform 0.2s;
+}
+
+.filter-select-box.open .select-icon {
+  transform: rotate(180deg);
+}
+
+.select-list {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  list-style: none;
+  padding: 0.4rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.18s, transform 0.18s, visibility 0.18s;
+  z-index: 20;
+}
+
+.filter-select-box.open .select-list {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.select-item button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  padding: 0.55rem 0.75rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.select-item button:hover,
+.select-item button.active {
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+}
+
 .project-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -537,7 +644,34 @@ strong {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+  transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s, opacity 0.25s;
+}
+
+.project-card[data-filter-item] {
+  animation: card-in 0.35s ease both;
+}
+
+@keyframes card-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+.project-card.is-hidden {
+  display: none;
+}
+
+.filter-empty {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  text-align: center;
+}
+
+.is-hidden {
+  display: none;
 }
 
 .project-card:hover {
@@ -1094,6 +1228,14 @@ a.contact-link:hover {
   .grid-cards,
   .quick-facts {
     grid-template-columns: 1fr;
+  }
+
+  .filter-list {
+    display: none;
+  }
+
+  .filter-select-box {
+    display: block;
   }
 
   .hero-name {

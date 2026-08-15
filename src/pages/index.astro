@@ -42,6 +42,7 @@ const projects = [
     tags: ['product management', 'order handling', 'sales workflow', 'offline/local'],
     tech: 'JavaScript · HTML/CSS · System Design',
     status: 'Personal project',
+    category: 'Applications',
     preview: '/media-assets/vietcoffee.png',
     github: 'https://github.com/larvenejafemcoder',
   },
@@ -53,10 +54,13 @@ const projects = [
     tags: ['learning workflows', 'university info', 'progress tracking', 'scholarship discovery'],
     tech: 'JavaScript · Web Development · Frontend Systems',
     status: 'Personal project',
+    category: 'Web development',
     preview: '/media-assets/scholarnet.png',
     github: 'https://github.com/larvenejafemcoder',
   },
 ];
+
+const categories = ['All', ...new Set(projects.map((p) => p.category))];
 
 const strengths = [
   { icon: 'fa-graduation-cap', title: 'Self-directed learning', text: 'Able to learn unfamiliar technologies independently through documentation, experimentation, and project-based practice rather than relying entirely on formal coursework.' },
@@ -157,12 +161,38 @@ const certifications = [
 
       <!-- Featured work -->
       <section class="section reveal" id="projects" aria-labelledby="projects-title">
-        <div class="section-label">~/projects</div>
+                <div class="section-label">~/projects</div>
         <h2 class="section-title" id="projects-title">Featured Work</h2>
 
-        <div class="project-grid">
+        <ul class="filter-list" role="tablist" aria-label="Filter projects by category">
+          {categories.map((c, i) => (
+            <li class="filter-item" role="presentation">
+              <button class={`filter-btn${i === 0 ? " active" : ""}`} data-filter-btn data-filter={c}>
+                {c}
+              </button>
+            </li>
+          ))}
+        </ul>
+
+        <div class="filter-select-box">
+          <button class="filter-select" data-select aria-haspopup="listbox" aria-expanded="false">
+            <div class="select-value" data-select-value>Select category</div>
+            <div class="select-icon"><i class="fas fa-chevron-down" aria-hidden="true"></i></div>
+          </button>
+          <ul class="select-list" role="listbox" aria-label="Filter projects by category">
+            {categories.map((c, i) => (
+              <li class="select-item">
+                <button data-select-item data-filter={c}>{c}</button>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="project-grid" id="project-grid">
           {projects.map((p) => (
-            <article class="project-card">
+            <article class="project-card" data-filter-item data-category={p.category}>
+
+
               <div class="project-shot">
                 <div class="project-shot-fallback">
                   <span class="fb-label">{p.tag}</span>
@@ -194,6 +224,8 @@ const certifications = [
             </article>
           ))}
         </div>
+
+        <p class="filter-empty is-hidden" id="filter-empty">No projects in this category yet.</p>
 
         <div class="github-stats">
           <img

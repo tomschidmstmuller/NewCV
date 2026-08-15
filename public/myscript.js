@@ -62,6 +62,81 @@ var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
   });
 })();
 
+// ─── Project Filter ───
+(function initProjectFilter() {
+  var grid = document.getElementById("project-grid");
+  if (!grid) return;
+
+  var items = Array.prototype.slice.call(grid.querySelectorAll("[data-filter-item]"));
+  var filterBtns = Array.prototype.slice.call(document.querySelectorAll("[data-filter-btn]"));
+  var selectBtns = Array.prototype.slice.call(document.querySelectorAll("[data-select-item]"));
+  var selectBox = document.querySelector("[data-select]");
+  var selectValue = document.querySelector("[data-select-value]");
+  var empty = document.getElementById("filter-empty");
+
+  function applyFilter(cat) {
+    var shown = 0;
+
+    items.forEach(function (item) {
+      var match = cat === "All" || item.getAttribute("data-category") === cat;
+      item.classList.toggle("is-hidden", !match);
+      if (match) {
+        shown++;
+        item.style.animation = "none";
+        item.offsetHeight;
+        item.style.animation = "";
+      }
+    });
+
+    filterBtns.forEach(function (b) {
+      b.classList.toggle("active", b.getAttribute("data-filter") === cat);
+    });
+
+    selectBtns.forEach(function (b) {
+      b.classList.toggle("active", b.getAttribute("data-filter") === cat);
+    });
+
+    if (selectValue) {
+      selectValue.textContent = cat;
+    }
+
+    if (empty) {
+      empty.classList.toggle("is-hidden", shown > 0);
+    }
+  }
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      applyFilter(btn.getAttribute("data-filter"));
+    });
+  });
+
+  selectBtns.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      applyFilter(btn.getAttribute("data-filter"));
+      if (selectBox) {
+        selectBox.parentElement.classList.remove("open");
+        selectBox.setAttribute("aria-expanded", "false");
+      }
+    });
+  });
+
+  if (selectBox) {
+    selectBox.addEventListener("click", function () {
+      var box = selectBox.parentElement;
+      var open = box.classList.toggle("open");
+      selectBox.setAttribute("aria-expanded", String(open));
+    });
+  }
+
+  document.addEventListener("click", function (e) {
+    if (selectBox && !selectBox.parentElement.contains(e.target)) {
+      selectBox.parentElement.classList.remove("open");
+      selectBox.setAttribute("aria-expanded", "false");
+    }
+  });
+})();
+
 // ─── Section Reveal ───
 (function initReveal() {
   var targets = document.querySelectorAll(".reveal");
