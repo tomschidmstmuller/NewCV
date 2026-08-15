@@ -1,0 +1,611 @@
+---
+const jpMain = '読み込み中...';
+const jpSub = 'システムを起動する';
+const jpVertical = '機・械・の・下・の・機・械';
+---
+
+<div id="loading-screen" aria-hidden="true">
+  <div class="loading-split">
+    <div class="loading-left"></div>
+    <div class="loading-right">
+      <div class="loaderGame" id="loaderGame">
+        <div class="loaderGame-container">
+          <div class="loaderGame-in" id="loaderGameIn"></div>
+          <div class="loaderGame-ball"></div>
+        </div>
+      </div>
+      <div class="jp-loading-content">
+        <div class="jp-text-container">
+          <div class="jp-main">{jpMain}</div>
+          <div class="jp-sub">{jpSub}</div>
+        </div>
+        <div class="jp-loader">
+          <div class="jp-loader-bar"></div>
+          <div class="jp-loader-percent" id="jpLoadPercent">0%</div>
+        </div>
+      </div>
+      <div class="jp-vertical-text">{jpVertical}</div>
+    </div>
+  </div>
+
+  <div class="loading-wrap" id="loadingWrap">
+    <div class="loading-hover"></div>
+    <button class="loading-button" id="loadingButton" type="button">
+      <div class="loading-container">
+        <div class="loading-content">
+          <div class="loading-content-in">Loading <span id="loadPercent">0%</span></div>
+        </div>
+        <div class="loading-box"></div>
+      </div>
+      <div class="loading-content2"><span>ようこそ</span></div>
+    </button>
+  </div>
+</div>
+
+<div id="welcome-message" role="dialog" aria-label="Welcome">
+  <h1>ようこそ</h1>
+  <p>Welcome — press any key or click to continue</p>
+</div>
+
+<style>
+  #loading-screen {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100svh;
+    background: #0a0d0c;
+    z-index: 999999999;
+    color: #fff;
+  }
+
+  .loading-split {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+
+  .loading-left {
+    flex: 1;
+    position: relative;
+    background: transparent;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .loading-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0f1412 0%, #0b0e0d 100%);
+    position: relative;
+  }
+
+  .jp-loading-content {
+    text-align: center;
+    position: relative;
+    padding: 2rem;
+  }
+
+  .jp-text-container {
+    margin-bottom: 3rem;
+  }
+
+  .jp-main {
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    background: linear-gradient(135deg, #ffffff 0%, #009e87 80%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: jpFadeInUp 0.8s ease forwards;
+    animation-delay: 0.2s;
+  }
+
+  .jp-sub {
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.2em;
+    opacity: 0;
+    animation: jpFadeInUp 0.8s ease forwards;
+    animation-delay: 0.4s;
+  }
+
+  @keyframes jpFadeInUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  .jp-loader {
+    width: 280px;
+    max-width: 80%;
+    margin: 2rem auto;
+  }
+
+  .jp-loader-bar {
+    height: 2px;
+    background: rgba(0, 158, 135, 0.3);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .jp-loader-bar::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: linear-gradient(90deg, #009e87, #5bd8c3);
+    border-radius: 2px;
+    transition: width 0.1s linear;
+    width: var(--pct, 0%);
+  }
+
+  .jp-loader-percent {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    text-align: right;
+    margin-top: 0.5rem;
+    color: #009e87;
+    letter-spacing: 1px;
+  }
+
+  .jp-vertical-text {
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.15);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .loading-button {
+    padding: 20px 50px;
+    border-radius: 100px;
+    background-color: #0e1210;
+    border: 1px solid rgba(0, 158, 135, 0.35);
+    overflow: hidden;
+    font-size: 18px;
+    font-weight: 500;
+    position: relative;
+    z-index: 9;
+    color: #fff;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .loading-button::before {
+    content: "";
+    background-color: #009e87;
+    top: var(--mouse-y);
+    left: var(--mouse-x);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    opacity: 1;
+    position: absolute;
+    z-index: 99;
+    filter: blur(60px);
+    opacity: 0;
+    transform: translate(-50%, -50%);
+  }
+
+  .loading-button:hover::before { opacity: 1; }
+  .loading-clicked .loading-button::before { opacity: 0; }
+
+  .loading-wrap {
+    --Lsize: 145px;
+    padding: 6px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    min-width: 0px;
+    min-height: 0px;
+    border-radius: 100px;
+    background-color: #0e1210;
+    overflow: hidden;
+    transition: 0.8s ease-in-out;
+    transition-delay: 0.2s;
+    box-shadow: 0px 15px 15px 0px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .loading-clicked {
+    transition-delay: 0ms;
+    transition-timing-function: cubic-bezier(0.33, 0.11, 1, 0.72);
+    transform: translate(-50%, -50%) scale(1);
+    min-width: calc(100vw + 5000px);
+    border-radius: 5000px;
+    min-height: calc(100vh + 500px);
+    box-shadow: none;
+  }
+
+  .loading-clicked .loading-button { overflow: visible; }
+
+  .loading-hover {
+    background-color: #5bd8c3;
+    width: 250px;
+    height: 120px;
+    position: absolute;
+    top: var(--mouse-y);
+    left: var(--mouse-x);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    filter: blur(30px);
+    opacity: 1;
+    transition: opacity 500ms;
+  }
+
+  .loading-wrap:hover .loading-hover { opacity: 1; }
+  .loading-clicked:hover .loading-hover,
+  .loading-clicked .loading-hover { opacity: 0; }
+
+  .loading-content {
+    position: relative;
+    background-color: #0e1210;
+    width: 100%;
+    overflow: hidden;
+    transition: 0.6s;
+    text-transform: uppercase;
+  }
+
+  .loading-content-in {
+    position: relative;
+    width: var(--Lsize);
+    overflow: hidden;
+  }
+
+  .loading-content2 {
+    position: relative;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    width: var(--Lsize);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+    text-align: center;
+    transition: 1s;
+    max-width: var(--Lsize);
+  }
+
+  .loading-clicked .loading-content2 { opacity: 0; transition: 0.5s; }
+
+  .loading-content span {
+    font-weight: 300;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    opacity: 0.7;
+  }
+
+  .loading-box {
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    transform: translate(100%, -50%);
+    width: 15px;
+    height: 25px;
+    background-color: #fff;
+    animation: blink 1s linear infinite;
+  }
+
+  @keyframes blink {
+    0% { opacity: 0; }
+    25% { opacity: 1; }
+    75% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+  .loading-complete .loading-box {
+    animation: blinkDone 0.3s forwards;
+    animation-delay: 1s;
+    opacity: 1;
+  }
+
+  @keyframes blinkDone {
+    to { opacity: 0; }
+  }
+
+  .loading-container {
+    position: absolute;
+    width: 100%;
+    max-width: var(--Lsize);
+    top: 50%;
+    transition: 1s;
+    left: 50px;
+    z-index: 9;
+    transform: translateY(-50%);
+  }
+
+  .loading-complete .loading-container { max-width: 0px; }
+
+  .loaderGame {
+    position: absolute;
+    top: 2rem;
+    right: 3rem;
+    opacity: 0.6;
+    transition: 0.3s;
+    z-index: 1;
+  }
+
+  .loaderGame-container {
+    width: 200px;
+    height: 100px;
+    overflow: hidden;
+    position: relative;
+    transform: scale(0.35);
+    transform-origin: top right;
+  }
+
+  .loader-out .loaderGame-container { opacity: 0; }
+
+  .loaderGame-in {
+    width: 1200px;
+    position: absolute;
+    overflow: hidden;
+    left: 0;
+    animation: loaderGame 7s linear infinite;
+  }
+
+  @keyframes loaderGame {
+    0% { transform: translateX(0px); }
+    100% { transform: translateX(-300px); }
+  }
+
+  .loaderGame-line {
+    float: left;
+    margin: 0px 20px;
+    margin-bottom: 40px;
+    position: relative;
+    width: 10px;
+    height: 60px;
+    background-color: rgba(0, 158, 135, 0.3);
+    display: block;
+  }
+
+  .loaderGame-line:nth-child(2n) {
+    margin-top: 40px;
+    margin-bottom: 0px;
+  }
+
+  .loaderGame-ball {
+    position: absolute;
+    left: 20%;
+    top: 0%;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #5bd8c3;
+    animation: ball25 7s infinite;
+    transform: translateY(10px);
+    animation-timing-function: cubic-bezier(0.3, 1.18, 0.63, 1.28);
+  }
+
+  @keyframes ball25 {
+    0% { transform: translateY(70px); }
+    15% { transform: translateY(10px); }
+    30% { transform: translateY(70px); }
+    45% { transform: translateY(10px); }
+    67% { transform: translateY(70px); }
+    80% { transform: translateY(10px); }
+    90% { transform: translateY(70px); }
+    100% { transform: translateY(70px); }
+  }
+
+  @media only screen and (min-width: 1400px) {
+    .loading-wrap { --Lsize: 210px; }
+    .loading-button { padding: 30px 70px; font-size: 25px; }
+    .loading-container { left: 70px; }
+  }
+
+  @media (max-width: 768px) {
+    .loading-split {
+      flex-direction: column;
+    }
+    .loading-left {
+      min-height: 40vh;
+    }
+    .loading-right {
+      min-height: 60vh;
+    }
+    .jp-vertical-text {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .jp-main, .jp-sub {
+      animation: none;
+      opacity: 1;
+    }
+    .loaderGame-in,
+    .loaderGame-ball,
+    .loading-box {
+      animation: none;
+    }
+  }
+
+  #welcome-message {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: #0a0d0c;
+    z-index: 999999998;
+    color: #fff;
+    font-family: "Noto Sans JP", var(--font-body), sans-serif;
+    flex-direction: column;
+    gap: 1rem;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    cursor: pointer;
+  }
+
+  #welcome-message.show {
+    display: flex;
+    opacity: 1;
+  }
+
+  #welcome-message h1 {
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    background: linear-gradient(135deg, #ffffff 0%, #009e87 80%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  #welcome-message p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.2em;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+  }
+</style>
+
+<script>
+  (function () {
+    var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var screen = document.getElementById("loading-screen");
+    var welcome = document.getElementById("welcome-message");
+    var wrap = document.getElementById("loadingWrap");
+    var button = document.getElementById("loadingButton");
+    var loadPercent = document.getElementById("loadPercent");
+    var jpLoadPercent = document.getElementById("jpLoadPercent");
+    var jpLoaderBar = document.querySelector(".jp-loader-bar");
+
+    function skip() {
+      document.body.style.overflowY = "auto";
+      if (screen) screen.style.display = "none";
+    }
+
+    if (!screen || !button) return;
+
+    var booted = false;
+    try { booted = sessionStorage.getItem("ncv-booted") === "1"; } catch (e) {}
+    if (booted || reduceMotion) { skip(); return; }
+
+    document.body.style.overflow = "hidden";
+
+    function updatePercentUI(val) {
+      if (loadPercent) loadPercent.textContent = val + "%";
+      if (jpLoadPercent) jpLoadPercent.textContent = val + "%";
+      if (jpLoaderBar) jpLoaderBar.style.setProperty("--pct", val + "%");
+    }
+
+    (function initLoaderGame() {
+      var container = document.getElementById("loaderGameIn");
+      if (!container) return;
+      for (var i = 0; i < 27; i++) {
+        var div = document.createElement("div");
+        div.className = "loaderGame-line";
+        container.appendChild(div);
+      }
+    })();
+
+    var loadState = { percent: 0 };
+    var interval = setInterval(function () {
+      if (loadState.percent <= 50) {
+        loadState.percent += Math.round(Math.random() * 5);
+      } else {
+        clearInterval(interval);
+        interval = setInterval(function () {
+          loadState.percent += Math.round(Math.random());
+          updatePercentUI(loadState.percent);
+          if (loadState.percent > 91) {
+            clearInterval(interval);
+          }
+        }, 2000);
+      }
+      updatePercentUI(loadState.percent);
+    }, 100);
+
+    function finishLoading() {
+      return new Promise(function (resolve) {
+        clearInterval(interval);
+        var fastInterval = setInterval(function () {
+          if (loadState.percent < 100) {
+            loadState.percent++;
+            updatePercentUI(loadState.percent);
+          } else {
+            clearInterval(fastInterval);
+            resolve();
+          }
+        }, 2);
+      });
+    }
+
+    var loadingClicked = false;
+
+    function enter() {
+      if (loadingClicked) return;
+      loadingClicked = true;
+      button.classList.add("loading-complete");
+      finishLoading().then(function () {
+        wrap.classList.add("loading-clicked");
+        var game = document.getElementById("loaderGame");
+        if (game) game.classList.add("loader-out");
+
+        setTimeout(function () {
+          screen.style.display = "none";
+          document.body.style.overflowY = "auto";
+          welcome.classList.add("show");
+        }, 1000);
+      });
+    }
+
+    function dismissWelcome() {
+      welcome.classList.remove("show");
+      var main = document.getElementById("main-content");
+      if (main) main.focus();
+      try { sessionStorage.setItem("ncv-booted", "1"); } catch (e) {}
+      welcome.removeEventListener("click", dismissWelcome);
+      document.removeEventListener("keydown", onKey);
+    }
+
+    function onKey(e) {
+      if (!welcome.classList.contains("show")) {
+        if (e.key === "Enter") enter();
+        return;
+      }
+      dismissWelcome();
+    }
+
+    button.addEventListener("click", enter);
+    welcome.addEventListener("click", dismissWelcome);
+    document.addEventListener("keydown", onKey);
+
+    wrap.addEventListener("mousemove", function (e) {
+      var rect = wrap.getBoundingClientRect();
+      var x = e.clientX - rect.left;
+      var y = e.clientY - rect.top;
+      wrap.style.setProperty("--mouse-x", x + "px");
+      wrap.style.setProperty("--mouse-y", y + "px");
+    });
+  })();
+</script>

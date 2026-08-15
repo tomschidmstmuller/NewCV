@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import BootScreen from '../components/BootScreen.astro';
 import '../styles/style.css';
 
 const profile = {
@@ -140,6 +141,7 @@ const certifications = [
 ---
 
 <BaseLayout title="Nguyễn Ngọc Gia Khang — Software Engineering Student">
+  <BootScreen />
   <div class="shell">
     <!-- ═══════════ Profile sidebar ═══════════ -->
     <aside class="side-panel" id="side-panel" aria-label="Profile and navigation">
