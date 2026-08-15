@@ -60,9 +60,9 @@
     width: 100vw;
     height: 100vh;
     height: 100svh;
-    background: #0A0A0F;
+    background: #F7F8F5;
     z-index: 999999999;
-    color: #fff;
+    color: #17211F;
   }
 
   .loading-split {
@@ -84,7 +84,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #0d0f16 0%, #12121E 100%);
+    background: linear-gradient(135deg, #EDF3F0 0%, #FFFFFF 100%);
     position: relative;
   }
 
@@ -103,7 +103,7 @@
     font-size: clamp(2rem, 6vw, 4rem);
     font-weight: 500;
     letter-spacing: 0.1em;
-    background: linear-gradient(135deg, #ffffff 0%, #00FFB2 80%);
+    background: linear-gradient(135deg, #17211F 0%, #00A88F 80%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -117,7 +117,7 @@
     font-family: "Noto Sans JP", sans-serif;
     font-size: clamp(0.9rem, 2vw, 1.2rem);
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.6);
+    color: #5F6B68;
     letter-spacing: 0.2em;
     opacity: 0;
     animation: jpFadeInUp 0.8s ease forwards;
@@ -132,7 +132,7 @@
 
   .jp-loader-bar {
     height: 2px;
-    background: rgba(0, 255, 178, 0.25);
+    background: rgba(0, 168, 143, 0.25);
     border-radius: 2px;
     overflow: hidden;
     position: relative;
@@ -144,7 +144,7 @@
     left: 0;
     top: 0;
     height: 100%;
-    background: linear-gradient(90deg, #00FFB2, #FFD700);
+    background: linear-gradient(90deg, #00A88F, #155E52);
     border-radius: 2px;
     transition: width 0.1s linear;
     width: var(--pct, 0%);
@@ -155,7 +155,7 @@
     font-size: 0.8rem;
     text-align: right;
     margin-top: 0.5rem;
-    color: #00FFB2;
+    color: #00A88F;
     letter-spacing: 1px;
   }
 
@@ -170,7 +170,7 @@
     font-size: 0.8rem;
     font-weight: 300;
     letter-spacing: 0.2em;
-    color: rgba(255, 255, 255, 0.14);
+    color: rgba(23, 33, 31, 0.18);
     white-space: nowrap;
     pointer-events: none;
   }
@@ -191,21 +191,21 @@
   .loading-button {
     padding: 20px 50px;
     border-radius: 100px;
-    background-color: #0A0A0F;
+    background-color: #FFFFFF;
     overflow: hidden;
     font-size: 18px;
     font-weight: 500;
     position: relative;
     z-index: 9;
-    color: #fff;
+    color: #17211F;
     cursor: pointer;
-    border: 1px solid rgba(0, 255, 178, 0.25);
+    border: 1px solid rgba(0, 168, 143, 0.3);
     font-family: inherit;
   }
 
   .loading-button::before {
     content: "";
-    background-color: #00FFB2;
+    background-color: #00A88F;
     top: var(--mouse-y);
     left: var(--mouse-x);
     border-radius: 50%;
@@ -233,11 +233,11 @@
     min-width: 0px;
     min-height: 0px;
     border-radius: 100px;
-    background-color: #0A0A0F;
+    background-color: #FFFFFF;
     overflow: hidden;
     transition: 0.8s ease-in-out;
     transition-delay: 0.2s;
-    box-shadow: 0px 15px 15px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 15px 15px 0px rgba(23, 33, 31, 0.15);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -256,7 +256,7 @@
   .loading-clicked .loading-button { overflow: visible; }
 
   .loading-hover {
-    background-color: #FF0055;
+    background-color: #DDF5EF;
     width: 250px;
     height: 120px;
     position: absolute;
@@ -270,12 +270,12 @@
   }
 
   .loading-wrap:hover .loading-hover,
-  .loading-wrap:focus-within .loading-hover { opacity: 0.35; }
+  .loading-wrap:focus-within .loading-hover { opacity: 0.9; }
   .loading-clicked .loading-hover { opacity: 0; }
 
   .loading-content {
     position: relative;
-    background-color: #0A0A0F;
+    background-color: #FFFFFF;
     width: 100%;
     overflow: hidden;
     transition: 0.6s;
@@ -322,7 +322,7 @@
     transform: translate(100%, -50%);
     width: 15px;
     height: 25px;
-    background-color: #00FFB2;
+    background-color: #00A88F;
     animation: blink 1s linear infinite;
   }
 
@@ -396,7 +396,7 @@
     position: relative;
     width: 10px;
     height: 60px;
-    background-color: rgba(0, 255, 178, 0.3);
+    background-color: rgba(0, 168, 143, 0.3);
     display: block;
   }
 
@@ -412,7 +412,7 @@
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    background-color: #FF0055;
+    background-color: #087A6A;
     animation: ball25 7s infinite;
     transform: translateY(10px);
     animation-timing-function: cubic-bezier(0.3, 1.18, 0.63, 1.28);
@@ -442,9 +442,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #0A0B10;
+    background: #F7F8F5;
     z-index: 999999998;
-    color: #fff;
+    color: #17211F;
     flex-direction: column;
     gap: 1rem;
     opacity: 0;
@@ -462,7 +462,7 @@
     font-size: clamp(2rem, 6vw, 4rem);
     font-weight: 500;
     letter-spacing: 0.1em;
-    background: linear-gradient(135deg, #ffffff 0%, #00FFB2 80%);
+    background: linear-gradient(135deg, #17211F 0%, #00A88F 80%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -470,7 +470,7 @@
 
   #welcome-message p {
     font-size: 1rem;
-    color: rgba(255, 255, 255, 0.5);
+    color: #5F6B68;
     letter-spacing: 0.2em;
   }
 
@@ -478,9 +478,9 @@
     margin-top: 0.5rem;
     padding: 0.7rem 2rem;
     border-radius: 100px;
-    background: linear-gradient(135deg, #00FFB2, #FFD700);
+    background: linear-gradient(135deg, #00A88F, #087A6A);
     border: none;
-    color: #0A0A0F;
+    color: #FFFFFF;
     font-family: var(--font-mono);
     font-size: 0.85rem;
     font-weight: 700;
@@ -490,7 +490,7 @@
 
   #welcome-close:hover,
   #welcome-close:focus-visible {
-    box-shadow: 0 0 20px rgba(0, 255, 178, 0.5);
+    box-shadow: 0 0 20px rgba(0, 168, 143, 0.5);
   }
 
   /* Skip when already entered this session */

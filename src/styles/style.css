@@ -7,25 +7,25 @@
 
 /* ─── Design Tokens ─── */
 :root {
-  /* Cyberpunk 2077 palette — NetWatch / Maelstrom / Arasaka */
-  --primary: #00FFB2;
-  --primary-glow: rgba(0, 255, 178, 0.35);
-  --primary-soft: rgba(0, 255, 178, 0.12);
-  --secondary: #FF0055;
-  --secondary-glow: rgba(255, 0, 85, 0.3);
-  --accent: #FFD700;
-  --accent-glow: rgba(255, 215, 0, 0.25);
+  /* Soft Ivory / Teal light palette */
+  --primary: #00A88F;
+  --primary-glow: rgba(0, 168, 143, 0.25);
+  --primary-soft: #DDF5EF;
+  --secondary: #087A6A;
+  --secondary-glow: rgba(8, 122, 106, 0.22);
+  --accent: #155E52;
+  --accent-glow: rgba(21, 94, 82, 0.18);
   --warning: #FF3300;
-  --void: #0A0A0F;
-  --void-light: #12121E;
-  --panel: rgba(18, 18, 30, 0.85);
-  --panel-solid: #12121E;
-  --glass: rgba(0, 255, 178, 0.05);
-  --glass-border: #1A1A2E;
-  --glass-hover: rgba(0, 255, 178, 0.14);
-  --text-primary: #E0E0E0;
-  --text-secondary: #A9A9C0;
-  --text-muted: #6E6E85;
+  --void: #F7F8F5;
+  --void-light: #FFFFFF;
+  --panel: rgba(255, 255, 255, 0.85);
+  --panel-solid: #FFFFFF;
+  --glass: rgba(0, 168, 143, 0.05);
+  --glass-border: #DCE4E0;
+  --glass-hover: rgba(0, 168, 143, 0.14);
+  --text-primary: #17211F;
+  --text-secondary: #5F6B68;
+  --text-muted: #89938F;
   --font-display: 'Orbitron', monospace;
   --font-body: 'Inter', sans-serif;
   --font-accent: 'Rajdhani', sans-serif;
@@ -33,12 +33,12 @@
 
   /* legacy aliases — existing component styles resolve through these */
   --purple: var(--primary);
-  --purple-glow: rgba(0, 255, 178, 0.35);
-  --purple-soft: rgba(0, 255, 178, 0.12);
+  --purple-glow: rgba(0, 168, 143, 0.25);
+  --purple-soft: var(--primary-soft);
   --magenta: var(--secondary);
-  --magenta-glow: rgba(255, 0, 85, 0.3);
+  --magenta-glow: rgba(8, 122, 106, 0.22);
   --cyan: var(--accent);
-  --cyan-glow: rgba(255, 215, 0, 0.25);
+  --cyan-glow: rgba(21, 94, 82, 0.18);
 }
 
 /* ─── Reset ─── */
@@ -103,9 +103,9 @@ body::before {
   inset: 0;
   z-index: -2;
   background:
-    radial-gradient(ellipse 80% 60% at 20% 30%, rgba(0, 255, 178, 0.07) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 50% at 80% 70%, rgba(255, 215, 0, 0.04) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 40% at 50% 0%, rgba(255, 0, 85, 0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 80% 60% at 20% 30%, rgba(0, 168, 143, 0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at 80% 70%, rgba(21, 94, 82, 0.05) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 50% 0%, rgba(8, 122, 106, 0.04) 0%, transparent 70%),
     var(--void);
 }
 
@@ -116,8 +116,8 @@ body::after {
   inset: 0;
   z-index: -1;
   background-image:
-    linear-gradient(rgba(0, 255, 178, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 255, 178, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(0, 168, 143, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 168, 143, 0.04) 1px, transparent 1px);
   background-size: 60px 60px;
   pointer-events: none;
 }
@@ -132,8 +132,8 @@ body::after {
     0deg,
     transparent,
     transparent 2px,
-    rgba(0, 0, 0, 0.03) 2px,
-    rgba(0, 0, 0, 0.03) 4px
+    rgba(255, 255, 255, 0.04) 2px,
+    rgba(255, 255, 255, 0.04) 4px
   );
 }
 
@@ -143,7 +143,7 @@ body::after {
   width: 500px;
   height: 500px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 255, 178, 0.06) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 168, 143, 0.07) 0%, transparent 70%);
   pointer-events: none;
   z-index: 9998;
   transform: translate(-50%, -50%);
@@ -312,14 +312,14 @@ body::after {
   padding: 0.85rem 0.9rem;
   border: 1px solid var(--glass-border);
   border-radius: 10px;
-  background: rgba(7, 3, 12, 0.4);
+  background: rgba(255, 255, 255, 0.5);
 }
 .status-dot {
   width: 9px;
   height: 9px;
   border-radius: 50%;
   background: var(--primary);
-  box-shadow: 0 0 8px rgba(0, 255, 178, 0.8);
+  box-shadow: 0 0 8px rgba(0, 168, 143, 0.8);
   flex-shrink: 0;
   animation: statusBlink 2.4s ease-in-out infinite;
 }
@@ -393,8 +393,8 @@ body::after {
   border: 1px solid var(--glass-border);
   border-radius: 14px;
   overflow: hidden;
-  background: rgba(7, 3, 12, 0.7);
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 20px 60px rgba(0, 0, 0, 0.45);
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.03), 0 20px 60px rgba(23, 33, 31, 0.08);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
@@ -403,7 +403,7 @@ body::after {
   align-items: center;
   gap: 0.5rem;
   padding: 0.8rem 1.1rem;
-  background: rgba(16, 9, 26, 0.9);
+  background: rgba(255, 255, 255, 0.9);
   border-bottom: 1px solid var(--glass-border);
 }
 .term-dot {
@@ -520,7 +520,7 @@ body::after {
 }
 .btn-neon {
   background: linear-gradient(135deg, var(--purple), var(--magenta));
-  color: #0B0614;
+  color: #FFFFFF;
   font-weight: 700;
   border: 1px solid transparent;
   box-shadow: 0 0 18px var(--purple-glow);
@@ -611,7 +611,7 @@ body::after {
 }
 .card:hover {
   border-color: var(--purple);
-  box-shadow: 0 0 20px rgba(0, 255, 178, 0.12);
+  box-shadow: 0 0 20px rgba(0, 168, 143, 0.12);
   transform: translateY(-3px);
 }
 .card-icon {
@@ -674,7 +674,7 @@ body::after {
 .progress-line {
   height: 8px;
   border-radius: 4px;
-  background: rgba(0, 255, 178, 0.12);
+  background: rgba(0, 168, 143, 0.14);
   overflow: hidden;
 }
 .progress-line span {
@@ -709,7 +709,7 @@ body::after {
   font-family: var(--font-mono);
   font-size: 0.68rem;
   color: var(--cyan);
-  border: 1px solid rgba(255, 215, 0, 0.35);
+  border: 1px solid rgba(21, 94, 82, 0.35);
   border-radius: 6px;
   padding: 0.25rem 0.6rem;
 }
@@ -731,7 +731,7 @@ body::after {
 }
 .project-card:hover {
   border-color: var(--purple);
-  box-shadow: 0 0 24px rgba(0, 255, 178, 0.12);
+  box-shadow: 0 0 24px rgba(0, 168, 143, 0.12);
 }
 .project-head {
   display: flex;
@@ -892,7 +892,7 @@ body::after {
 }
 a.contact-link:hover {
   border-color: var(--purple);
-  box-shadow: 0 0 16px rgba(0, 255, 178, 0.12);
+  box-shadow: 0 0 16px rgba(0, 168, 143, 0.12);
 }
 .contact-link i {
   font-size: 1.1rem;
@@ -929,7 +929,7 @@ a.contact-link:hover {
   border-top: 1px solid var(--glass-border);
   padding: 2.5rem clamp(1.25rem, 4vw, 3.5rem);
   text-align: center;
-  background: rgba(7, 3, 12, 0.5);
+  background: rgba(255, 255, 255, 0.6);
 }
 .footer-quote {
   font-family: var(--font-mono);
@@ -1019,7 +1019,7 @@ a.contact-link:hover {
   .side-nav-links a {
     padding: 1rem 1.5rem;
     border-left: none;
-    border-bottom: 1px solid rgba(0, 255, 178, 0.1);
+    border-bottom: 1px solid rgba(0, 168, 143, 0.12);
     border-radius: 0;
     font-size: 0.95rem;
   }

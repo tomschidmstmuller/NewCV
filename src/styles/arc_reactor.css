@@ -1,10 +1,10 @@
 :root {
-  --purple: #00FFB2;
-  --purple-glow: rgba(0, 255, 178, 0.35);
-  --magenta: #FF0055;
-  --magenta-glow: rgba(255, 0, 85, 0.3);
-  --cyan: #FFD700;
-  --cyan-glow: rgba(255, 215, 0, 0.2);
+  --purple: #00A88F;
+  --purple-glow: rgba(0, 168, 143, 0.25);
+  --magenta: #087A6A;
+  --magenta-glow: rgba(8, 122, 106, 0.22);
+  --cyan: #155E52;
+  --cyan-glow: rgba(21, 94, 82, 0.18);
 }
 
 @-webkit-keyframes rotate-left { from { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
