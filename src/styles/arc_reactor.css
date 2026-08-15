@@ -1,10 +1,10 @@
 :root {
-  --purple: #9D4EDD;
-  --purple-glow: rgba(157, 78, 221, 0.35);
-  --magenta: #FF00AA;
-  --magenta-glow: rgba(255, 0, 170, 0.3);
-  --cyan: #00E5FF;
-  --cyan-glow: rgba(0, 229, 255, 0.2);
+  --purple: #00FFB2;
+  --purple-glow: rgba(0, 255, 178, 0.35);
+  --magenta: #FF0055;
+  --magenta-glow: rgba(255, 0, 85, 0.3);
+  --cyan: #FFD700;
+  --cyan-glow: rgba(255, 215, 0, 0.2);
 }
 
 @-webkit-keyframes rotate-left { from { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
@@ -56,7 +56,7 @@
   height: 120px;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  background-color: #05010A;
+  background-color: #0A0A0F;
   -webkit-clip-path: polygon(50% 90%, 0 0, 100% 0);
   clip-path: polygon(50% 90%, 0 0, 100% 0);
 }
@@ -66,8 +66,8 @@
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  background: -webkit-gradient(linear, left top, left bottom, from(var(--purple)), to(#05010A));
-  background: linear-gradient(var(--purple), #05010A);
+  background: -webkit-gradient(linear, left top, left bottom, from(var(--purple)), to(#0A0A0F));
+  background: linear-gradient(var(--purple), #0A0A0F);
   -webkit-animation: rotate-right 2s linear infinite;
   animation: rotate-right 2s linear infinite;
 }
@@ -77,15 +77,15 @@
   z-index: 1;
   inset: 10px;
   border-radius: 50%;
-  background-color: #05010A;
+  background-color: #0A0A0F;
 }
 .circle-1 span {
   position: absolute;
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: -webkit-gradient(linear, left top, left bottom, from(var(--magenta)), to(#05010A));
-  background: linear-gradient(var(--magenta), #05010A);
+  background: -webkit-gradient(linear, left top, left bottom, from(var(--magenta)), to(#0A0A0F));
+  background: linear-gradient(var(--magenta), #0A0A0F);
 }
 .circle-1 span:nth-child(1) { -webkit-filter: blur(5px); filter: blur(5px); }
 .circle-1 span:nth-child(2) { -webkit-filter: blur(5px); filter: blur(5px); }

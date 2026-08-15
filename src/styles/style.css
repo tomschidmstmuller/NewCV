@@ -7,27 +7,38 @@
 
 /* ─── Design Tokens ─── */
 :root {
-  --purple: #A259E8;
-  --purple-glow: rgba(162, 89, 232, 0.35);
-  --purple-soft: rgba(162, 89, 232, 0.12);
-  --magenta: #E86FBE;
-  --magenta-glow: rgba(232, 111, 190, 0.25);
-  --cyan: #3FD6E8;
-  --cyan-glow: rgba(63, 214, 232, 0.25);
-  --void: #07030C;
-  --void-light: #0B0614;
-  --panel: rgba(16, 9, 26, 0.85);
-  --panel-solid: #10091A;
-  --glass: rgba(162, 89, 232, 0.08);
-  --glass-border: rgba(162, 89, 232, 0.18);
-  --glass-hover: rgba(162, 89, 232, 0.2);
-  --text-primary: #E8DEF4;
-  --text-secondary: #B6A4CE;
-  --text-muted: #7C6B96;
+  /* Cyberpunk 2077 palette — NetWatch / Maelstrom / Arasaka */
+  --primary: #00FFB2;
+  --primary-glow: rgba(0, 255, 178, 0.35);
+  --primary-soft: rgba(0, 255, 178, 0.12);
+  --secondary: #FF0055;
+  --secondary-glow: rgba(255, 0, 85, 0.3);
+  --accent: #FFD700;
+  --accent-glow: rgba(255, 215, 0, 0.25);
+  --warning: #FF3300;
+  --void: #0A0A0F;
+  --void-light: #12121E;
+  --panel: rgba(18, 18, 30, 0.85);
+  --panel-solid: #12121E;
+  --glass: rgba(0, 255, 178, 0.05);
+  --glass-border: #1A1A2E;
+  --glass-hover: rgba(0, 255, 178, 0.14);
+  --text-primary: #E0E0E0;
+  --text-secondary: #A9A9C0;
+  --text-muted: #6E6E85;
   --font-display: 'Orbitron', monospace;
-  --font-body: 'Space Grotesk', sans-serif;
-  --font-accent: 'Sora', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-body: 'Inter', sans-serif;
+  --font-accent: 'Rajdhani', sans-serif;
+  --font-mono: 'Fira Code', monospace;
+
+  /* legacy aliases — existing component styles resolve through these */
+  --purple: var(--primary);
+  --purple-glow: rgba(0, 255, 178, 0.35);
+  --purple-soft: rgba(0, 255, 178, 0.12);
+  --magenta: var(--secondary);
+  --magenta-glow: rgba(255, 0, 85, 0.3);
+  --cyan: var(--accent);
+  --cyan-glow: rgba(255, 215, 0, 0.25);
 }
 
 /* ─── Reset ─── */
@@ -92,9 +103,9 @@ body::before {
   inset: 0;
   z-index: -2;
   background:
-    radial-gradient(ellipse 80% 60% at 20% 30%, rgba(162, 89, 232, 0.07) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 50% at 80% 70%, rgba(63, 214, 232, 0.04) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 40% at 50% 0%, rgba(232, 111, 190, 0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 80% 60% at 20% 30%, rgba(0, 255, 178, 0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at 80% 70%, rgba(255, 215, 0, 0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 50% 0%, rgba(255, 0, 85, 0.04) 0%, transparent 70%),
     var(--void);
 }
 
@@ -105,8 +116,8 @@ body::after {
   inset: 0;
   z-index: -1;
   background-image:
-    linear-gradient(rgba(162, 89, 232, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(162, 89, 232, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(0, 255, 178, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 178, 0.03) 1px, transparent 1px);
   background-size: 60px 60px;
   pointer-events: none;
 }
@@ -132,7 +143,7 @@ body::after {
   width: 500px;
   height: 500px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(162, 89, 232, 0.06) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 255, 178, 0.06) 0%, transparent 70%);
   pointer-events: none;
   z-index: 9998;
   transform: translate(-50%, -50%);
@@ -307,8 +318,8 @@ body::after {
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: #3FE89B;
-  box-shadow: 0 0 8px rgba(63, 232, 155, 0.8);
+  background: var(--primary);
+  box-shadow: 0 0 8px rgba(0, 255, 178, 0.8);
   flex-shrink: 0;
   animation: statusBlink 2.4s ease-in-out infinite;
 }
@@ -439,6 +450,55 @@ body::after {
   50% { opacity: 0; }
 }
 
+/* ─── Glitch Text (emphasis only) ─── */
+.glitch {
+  position: relative;
+  display: inline-block;
+}
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  overflow: hidden;
+  clip-path: inset(0 0 100% 0);
+  pointer-events: none;
+}
+.glitch::before {
+  color: var(--secondary);
+  animation: glitch-a 2.4s infinite steps(2, jump-none);
+  animation-delay: 0.1s;
+}
+.glitch::after {
+  color: var(--accent);
+  animation: glitch-b 3.1s infinite steps(2, jump-none);
+  animation-delay: 0.3s;
+}
+@keyframes glitch-a {
+  0%, 6% { clip-path: inset(0 0 100% 0); }
+  7% { clip-path: inset(12% 0 62% 0); transform: translate(-2px, 1px); }
+  8% { clip-path: inset(55% 0 15% 0); transform: translate(2px, -1px); }
+  9% { clip-path: inset(0 0 100% 0); transform: none; }
+  46%, 52% { clip-path: inset(32% 0 38% 0); transform: translate(-1px, 0); }
+  53% { clip-path: inset(0 0 100% 0); transform: none; }
+  78%, 81% { clip-path: inset(70% 0 8% 0); transform: translate(1px, 1px); }
+  82% { clip-path: inset(0 0 100% 0); transform: none; }
+  100% { clip-path: inset(0 0 100% 0); }
+}
+@keyframes glitch-b {
+  0%, 9% { clip-path: inset(0 0 100% 0); }
+  10% { clip-path: inset(68% 0 10% 0); transform: translate(2px, 0); }
+  11% { clip-path: inset(25% 0 55% 0); transform: translate(-2px, 1px); }
+  12% { clip-path: inset(0 0 100% 0); transform: none; }
+  44%, 49% { clip-path: inset(8% 0 80% 0); transform: translate(1px, -1px); }
+  50% { clip-path: inset(0 0 100% 0); transform: none; }
+  71%, 75% { clip-path: inset(48% 0 28% 0); transform: translate(-1px, 0); }
+  76% { clip-path: inset(0 0 100% 0); transform: none; }
+  100% { clip-path: inset(0 0 100% 0); }
+}
+
 /* ─── CTA Buttons ─── */
 .hero-cta {
   display: flex;
@@ -551,7 +611,7 @@ body::after {
 }
 .card:hover {
   border-color: var(--purple);
-  box-shadow: 0 0 20px rgba(162, 89, 232, 0.12);
+  box-shadow: 0 0 20px rgba(0, 255, 178, 0.12);
   transform: translateY(-3px);
 }
 .card-icon {
@@ -614,7 +674,7 @@ body::after {
 .progress-line {
   height: 8px;
   border-radius: 4px;
-  background: rgba(162, 89, 232, 0.12);
+  background: rgba(0, 255, 178, 0.12);
   overflow: hidden;
 }
 .progress-line span {
@@ -649,7 +709,7 @@ body::after {
   font-family: var(--font-mono);
   font-size: 0.68rem;
   color: var(--cyan);
-  border: 1px solid rgba(63, 214, 232, 0.35);
+  border: 1px solid rgba(255, 215, 0, 0.35);
   border-radius: 6px;
   padding: 0.25rem 0.6rem;
 }
@@ -671,7 +731,7 @@ body::after {
 }
 .project-card:hover {
   border-color: var(--purple);
-  box-shadow: 0 0 24px rgba(162, 89, 232, 0.12);
+  box-shadow: 0 0 24px rgba(0, 255, 178, 0.12);
 }
 .project-head {
   display: flex;
@@ -832,7 +892,7 @@ body::after {
 }
 a.contact-link:hover {
   border-color: var(--purple);
-  box-shadow: 0 0 16px rgba(162, 89, 232, 0.12);
+  box-shadow: 0 0 16px rgba(0, 255, 178, 0.12);
 }
 .contact-link i {
   font-size: 1.1rem;
@@ -959,7 +1019,7 @@ a.contact-link:hover {
   .side-nav-links a {
     padding: 1rem 1.5rem;
     border-left: none;
-    border-bottom: 1px solid rgba(162, 89, 232, 0.1);
+    border-bottom: 1px solid rgba(0, 255, 178, 0.1);
     border-radius: 0;
     font-size: 0.95rem;
   }
